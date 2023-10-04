@@ -2,6 +2,10 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
+# For local live reload, use this
+#     bundle exec jekyll serve --livereload
+
+
 title: Trung's Blog
 email: nqt.quoctrung94@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
@@ -12,7 +16,8 @@ url: "https://nqtquoctrung94.github.io"
 author: Quoc-Trung Nguyen
 
 # twitter_username: jekyllrb
-github_username:  nqtquoctrung94
+github_username: nqtquoctrung94
+linkedin_username: nguyenqtrung
 
 # theme: minima
 plugins:
