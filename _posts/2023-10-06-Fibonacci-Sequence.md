@@ -46,7 +46,7 @@ def fibonacci_linear_loop(n: int) -> int:
     return a
 ```
 
-> Python cho phép cập nhật nhiều giá trị cùng một lúc. Vì thế, ta có thể rút gọn các dòng code bên trên
+> Python cho phép cập nhật nhiều giá trị cùng một lúc. Vì thế, ta có thể viết lại code ở dạng tối giản hơn.
 {: .prompt-tip }
 
 ```python
