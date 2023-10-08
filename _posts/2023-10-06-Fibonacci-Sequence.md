@@ -7,7 +7,8 @@ math: true
 excerpt_separator: <!--end_summary-->
 ---
 
-Bài viết này giới thiệu về dãy số Fibonacci và các thuật toán để tạo chuỗi, xuất ra các số trong chuỗi.
+Bài viết này giới thiệu về dãy số Fibonacci và các thuật toán để tìm số trong chuỗi tại một vị trí được cho trước.
+
 <!--end_summary-->
 
 ## Giới thiệu
@@ -19,7 +20,7 @@ Số thứ $n$ trong dãy số Fibonacci được kí hiệu là $F_n$, ta có $
 
 $$F_n = F_{n-1} + F_{n-2}$$
 
-Ví dụ với n = 4, ta có: <br>
+Ví dụ với n = 4: <br>
 $ F_4 = F_3 + F_2 = 2 + 1 = 3 $
 
 ![Minh hoạ dãy số Fibonacci](/assets/img/fibonacci-sequence/fibonacci-sequence-sample.png)
@@ -68,7 +69,7 @@ b = next_fibonacci
 a, b = b, a + b
 ```
 
-Thay các ý trên vào code ban đầu, ta có:
+Thay vào code ban đầu, ta có:
 ```python
 def fibonacci_linear_loop(n: int) -> int:
     a, b = 0, 1
@@ -84,10 +85,8 @@ Phương trình Binet tính giá trị của $F_n$ như sau:
 $$ F_n = \frac{1}{\sqrt{5}}\Bigg(\bigg(\frac{1 + \sqrt{5}}{2}\bigg)^{n} - \bigg(\frac{1 - \sqrt{5}}{2}\bigg)^{n}\Bigg) $$
 
 
-Đặt tỉ lệ vàng $\varphi = \dfrac{1 + \sqrt{5}}{2}$
-
+Đặt tỉ lệ vàng $\varphi = \dfrac{1 + \sqrt{5}}{2}$ <br>
 Ta cũng có thể biến đổi $\dfrac{1 - \sqrt{5}}{2} = 1 - \varphi = -\dfrac{1}{\varphi} = -\varphi^{-1} $
-
 
 Phương trình có thể viết rút gọn thành:
 
@@ -100,7 +99,7 @@ def fibonacci_binet_formula(n: int) -> int:
     return int(fibo_n)
 ```
 
-Ta nhận xét rằng giá trị $ \Bigg\| \bigg(\dfrac{1 - \sqrt{5}}{2} \bigg)^{\displaystyle n} \Bigg\| < 1 $ với mọi $n$, và giá trị này tiến rất nhanh về $0$. Vì thế, ta có thể tính vắn tắt giá trị $F_n$ theo:
+Ta nhận xét rằng giá trị $ \Bigg\| \bigg(\dfrac{1 - \sqrt{5}}{2} \bigg)^{\displaystyle n} \Bigg\| < 1 $, và giá trị này tiến rất nhanh về $0$ khi $n$ tăng. Vì thế, ta có thể tính vắn tắt giá trị $F_n$ theo:
 
 $$ F_n = \Bigg[ \frac{ \big(\frac{1 +\sqrt{5}}{2}\big)^{n}} {\sqrt{5}} \Bigg] = \Bigg[ \frac{\varphi^{n}}{2\varphi - 1} \Bigg] $$
 
@@ -121,8 +120,13 @@ def fibonacci_binet_formula_short(n: int) -> int:
     return int(round(fibo_n))
 ```
 
-> Phương trình Binet yêu cầu độ chính xác rất cao vì tính toán với số thập phân, vì thế không được áp dụng nhiều trong thực tế.
+> Phương trình Binet cần tính toán với số thập phân, dẫn đến khả năng sai số. Vì thế trong thực tế sẽ ít được sử dụng.
 {: .prompt-danger }
+
+
+### Sử dụng hàm đệ quy
+
+Đây có lẽ là hàm được mọi người thích dùng nhất
 
 
 ## Các nguồn tham khảo
