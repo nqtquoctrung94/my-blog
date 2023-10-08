@@ -8,8 +8,8 @@ theme: jekyll-theme-chirpy
 lang: vi-VN
 timezone: Asia/Bangkok
 
-title: Trung's blog
-tagline: Viết về hành trình học Dữ Liệu và các Thuật Toán. # On Data and Mathematics Algorithms.
+title: Trung Nguyễn
+tagline: Viết về Dữ Liệu và các Thuật Toán. # On Data and Mathematics Algorithms.
 description: >- # used by seo meta and the atom feed
   Trung's Blog on Data and Mathematics Algorithms.
 
