@@ -4,12 +4,13 @@ date: 2023 Oct 06
 categories: [Math, Fibonacci Sequence]
 tags: [math, fibonacci]
 math: true
-excerpt_separator: <!--end_summary-->
+excerpt_separator: <!--excerpt-end-->
 ---
 
-Bài viết này giới thiệu về dãy số Fibonacci và các thuật toán để tìm số trong chuỗi tại một vị trí được cho trước.
+<!--excerpt-start-->
+Bài viết này giới thiệu về dãy số Fibonacci và các thuật toán để tìm số trong chuỗi tại một vị trí được cho trước. 
+<!--excerpt-end-->
 
-<!--end_summary-->
 
 ## Giới thiệu
 Dãy số Fibonacci là một dãy số quen thuộc bắt đầu bằng chuỗi:
@@ -23,7 +24,8 @@ $$F_n = F_{n-1} + F_{n-2}$$
 Ví dụ với n = 4: <br>
 $ F_4 = F_3 + F_2 = 2 + 1 = 3 $
 
-![Minh hoạ dãy số Fibonacci](/assets/img/fibonacci-sequence/fibonacci-sequence-sample.png)
+![Fibonacci Sequence light](/assets/img/fibonacci-sequence/fibonacci-sequence-light.png){: .light }
+![Fibonacci Sequence dark](/assets/img/fibonacci-sequence/fibonacci-sequence-dark.png){: .dark }
 
 ## Tìm số Fibonacci tại vị trí n
 
@@ -127,6 +129,10 @@ def fibonacci_binet_formula_short(n: int) -> int:
 ### Sử dụng hàm đệ quy
 
 Đây có lẽ là hàm được mọi người thích dùng nhất
+
+### Sử dụng ma trận
+
+### Sử dụng ma trận (phiên )
 
 
 ## Các nguồn tham khảo
