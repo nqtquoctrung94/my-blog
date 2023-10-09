@@ -8,7 +8,7 @@ excerpt_separator: <!--excerpt-end-->
 ---
 
 <!--excerpt-start-->
-Bài viết này giới thiệu về dãy số Fibonacci và các thuật toán để tìm số trong chuỗi tại một vị trí được cho trước. 
+Bài viết này sẽ trình bày về chuỗi Fibonacci và các thuật toán trong Python để tìm số trong chuỗi Fibonacci ở vị trí cho trước. Bài viết cũng sẽ thảo luận về hiệu suất và khả năng xử lý của các thuật toán này.
 <!--excerpt-end-->
 
 
@@ -128,12 +128,56 @@ def fibonacci_binet_formula_short(n: int) -> int:
 
 ### Sử dụng hàm đệ quy
 
-Đây có lẽ là hàm được mọi người thích dùng nhất
+Hàm đệ quy đi tìm $F_n$ bằng cách truy ngược về giá trị ban đầu là $F_1$ và $F_0$, ta có:
+
+$$ \begin{aligned}
+F_n &= F_{n-1} + F_{n-2} \\
+F_{n-1} &= F_{n-2} + F_{n-3} \\
+F_{n-2} &= F_{n-3} + F_{n-4} \\
+&\dots \\
+F_3 &= F_2 + F_1 \\
+F_2 &= F_1 + F_0 \\
+\end{aligned} $$
+
+Thay $F_1 = 1$ và $F_0 = 0$, như vậy từ đấy ta tính ngược lên các giá trị $F_3, F_4, \dots$, ta tìm được giá trị $F_n$
+
+Code python khi triển khai rất gọn
+```python
+def fibonacci_recursive(n: int) -> int:
+    if n <= 1:
+        return n # fib(0) = 0 và fib(1) = 1
+    return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
+```
+
+> Tuy nhiên, cách làm này tốn rất nhiều tài nguyên của máy và bị lặp lại phép tính nhiều lần
+{: .prompt-danger }
+
+Để cải thiện thuật toán, ta sẽ lưu trữ các giá trị đã tính toán được lại, để tránh phải tính toán nhiều lần.
+
+Sau đây là code đệ quy tham khảo từ trang [realpython.com](https://realpython.com/fibonacci-sequence-python/#optimizing-the-recursive-algorithm-for-the-fibonacci-sequence)
+
+```python
+cache = {0: 0, 1: 1}    # Tạo cache để lưu trữ, mặc định có F0 = 0, F1 = 1
+
+def fibonacci_recursive(n: int) -> int:
+    if n in cache:      # Kiểm tra xem vị trí này đã được tính chưa
+        return cache[n]
+    cache[n] = fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
+    return cache[n]
+```
+
+> Mặc dù đã cải thiện được rất nhiều về việc hiệu năng, nhưng ta có thể cải tiến thêm nữa
+{: .prompt-info }
+
+Ta có 2 điểm có thể cải thiện ở code trên:
+- Lưu trữ bằng mảng 1 chiều thay vì dùng dictionary để giảm bộ nhớ
+- Thay keyword `in` thành hàm `len()` để giảm thời gian thực thi. Tham khảo thêm ở [Python Wiki](https://wiki.python.org/moin/TimeComplexity)
+
+
 
 ### Sử dụng ma trận
 
-### Sử dụng ma trận (phiên )
-
+### Sử dụng hàm 
 
 ## Các nguồn tham khảo
 - [Algorithms for Competitive Programming](https://cp-algorithms.com/algebra/fibonacci-numbers.html)
