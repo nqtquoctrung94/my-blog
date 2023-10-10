@@ -2,13 +2,13 @@
 title: Về dãy số Fibonacci
 date: 2023 Oct 06
 categories: [Math, Fibonacci Sequence]
-tags: [math, fibonacci]
+tags: [math, fibonacci, matrix]
 math: true
 excerpt_separator: <!--excerpt-end-->
 ---
 
 <!--excerpt-start-->
-Bài viết này sẽ trình bày về chuỗi Fibonacci và các thuật toán trong Python để tìm số trong chuỗi Fibonacci ở vị trí cho trước. Bài viết cũng sẽ thảo luận về hiệu suất và khả năng xử lý của các thuật toán này.
+Bài viết này sẽ trình bày về chuỗi Fibonacci và các thuật toán trong Python để tìm số trong chuỗi Fibonacci ở vị trí cho trước. Mình cũng sẽ thảo luận về hiệu suất và khả năng xử lý của các thuật toán này.
 <!--excerpt-end-->
 
 
@@ -30,12 +30,16 @@ $ F_4 = F_3 + F_2 = 2 + 1 = 3 $
 ## Tìm số Fibonacci tại vị trí n
 
 ### Sử dụng vòng lặp
+
+#### Ý tưởng
 Ta có thể tạo một phương trình vòng lặp đơn giản với ý tưởng như sau:
 - Bước 1: Bắt đầu với `a = 0` và `b = 1`
     - Lúc này a là $F_0$, b là $F_1$
 - Bước 2: Cập nhật giá trị a thành $F_1$ và b thành giá trị tiếp theo $F_2 = F_1 + F_0$
 - Bước 3: Tiếp tục lặp lại bước 2 đến khi a là giá trị $F_n$ cần tìm
 - Bước 4: Trả về a
+
+#### Thuật toán
 
 ```python
 def fibonacci_linear_loop(n: int) -> int:
@@ -82,6 +86,8 @@ def fibonacci_linear_loop(n: int) -> int:
 
 ### Sử dụng phương trình Binet
 
+#### Giới thiệu phương trình Binet
+
 Phương trình Binet tính giá trị của $F_n$ như sau:
 
 $$ F_n = \frac{1}{\sqrt{5}}\Bigg(\bigg(\frac{1 + \sqrt{5}}{2}\bigg)^{n} - \bigg(\frac{1 - \sqrt{5}}{2}\bigg)^{n}\Bigg) $$
@@ -94,12 +100,16 @@ Phương trình có thể viết rút gọn thành:
 
 $$ F_n = \frac{\varphi^{n} - (-\varphi)^{-n} }{\sqrt{5}} = \frac{\varphi^n - (-\varphi)^{-n}}{2\varphi - 1} $$
 
+#### Thuật toán
+
 ```python
 def fibonacci_binet_formula(n: int) -> int:
     phi = (1 + 5**(1/2))/2  # phi là ký hiệu của tỉ lệ vàng
     fibo_n = ( phi**n - (-phi)**(-n) )/(2*phi - 1)
     return int(fibo_n)
 ```
+
+#### Thuật toán (phiên bản rún gọn)
 
 Ta nhận xét rằng giá trị $ \Bigg\| \bigg(\dfrac{1 - \sqrt{5}}{2} \bigg)^{\displaystyle n} \Bigg\| < 1 $, và giá trị này tiến rất nhanh về $0$ khi $n$ tăng. Vì thế, ta có thể tính vắn tắt giá trị $F_n$ theo:
 
@@ -122,11 +132,13 @@ def fibonacci_binet_formula_short(n: int) -> int:
     return int(round(fibo_n))
 ```
 
-> Phương trình Binet cần tính toán chính xác với số thập phân, và Python có một số [hạn chế trong việc lưu trữ giá trị thập phân](https://docs.python.org/3/tutorial/floatingpoint.html) dẫn đến khả năng sai số khi tính các số Fibonacci lớn. Vì thế trong thực tế sẽ ít được sử dụng.
+> Phương trình Binet cần tính toán chính xác với số thập phân, và Python có một số [hạn chế trong việc lưu trữ giá trị thập phân](https://docs.python.org/3/tutorial/floatingpoint.html) dẫn đến khả năng sai số khi tính các số Fibonacci lớn. Vì vậy trong thực tế sẽ ít được sử dụng.
 {: .prompt-danger }
 
 
 ### Sử dụng hàm đệ quy
+
+#### Ý tưởng
 
 Hàm đệ quy đi tìm $F_n$ bằng cách truy ngược về giá trị ban đầu là $F_1$ và $F_0$, ta có:
 
@@ -141,6 +153,8 @@ F_2 &= F_1 + F_0 \\
 
 Thay $F_1 = 1$ và $F_0 = 0$, như vậy từ đấy ta tính ngược lên các giá trị $F_3, F_4, \dots$, ta tìm được giá trị $F_n$
 
+#### Thuật toán
+
 Code python khi triển khai rất gọn
 ```python
 def fibonacci_recursive(n: int) -> int:
@@ -149,15 +163,17 @@ def fibonacci_recursive(n: int) -> int:
     return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
 ```
 
-> Tuy nhiên, cách làm này tốn rất nhiều tài nguyên của máy và bị lặp lại phép tính nhiều lần
+> Tuy nhiên, cách làm này tốn rất nhiều tài nguyên của máy và bị lặp lại phép tính nhiều lần.
 {: .prompt-danger }
+
+#### Thuật toán (cải tiến)
 
 Để cải thiện thuật toán, ta sẽ lưu trữ các giá trị đã tính toán, để tránh phải lặp lại nhiều lần.
 
 Sau đây là code đệ quy tham khảo từ trang [realpython.com](https://realpython.com/fibonacci-sequence-python/#optimizing-the-recursive-algorithm-for-the-fibonacci-sequence)
 
 ```python
-cache = {0: 0, 1: 1}    # Tạo cache để lưu trữ, mặc định có F0 = 0, F1 = 1
+cache = {0: 0, 1: 1}    # Tạo cache để lưu trữ, mặc định có F0=0, F1=1
 
 def fibonacci_recursive(n: int) -> int:
     if n in cache:      # Kiểm tra xem vị trí này đã được tính chưa
@@ -167,9 +183,11 @@ def fibonacci_recursive(n: int) -> int:
 ```
 
 > Việc sử dụng hàm đệ quy để tính toán sẽ tạo ra rất nhiều vòng lặp, dẫn đến tình trạng tràn bộ nhớ `stack overflow`, và đối với hàm này thì máy của mình không thể chạy được với n > 2933
-{: .prompt-danger }
+{: .prompt-warning }
 
 ### Sử dụng ma trận
+
+#### Dạng ma trận của số Fibonacci
 
 Ta có thể tìm số Fibonacci tại vị trí n, $F(n)$, trong phép tính sau:
 
@@ -185,18 +203,15 @@ $$
 \end{bmatrix}
 $$
 
-Như vậy để tìm $F(n)$, ta có thể luỹ thừa ma trận $\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ đến bậc n. Nội dung bên dưới sẽ cố gắng chứng minh phương trình này trước khi đi vào code ứng dụng.
+Để tìm $F(n)$, ta có thể luỹ thừa ma trận $\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ đến bậc n. Nội dung bên dưới sẽ cố gắng chứng minh phương trình này trước khi đi vào code ứng dụng.
 
 #### Chứng minh trực tiếp
 
-Trước khi suy luận phương trình trực tiếp, ta cần thống nhất rằng ở đây [dãy số Fibonacci có thể mở rộng theo chiều âm](https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers#Extension_to_negative_integers)
-
-Ta có:
+Trước khi suy luận phương trình trực tiếp, ta cần thống nhất rằng ở đây [dãy số Fibonacci có thể mở rộng theo chiều âm](https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers#Extension_to_negative_integers). Từ phương trình:
 
 $$ F(n+1) = F(n) + F(n-1) $$
 
-
-Viết lại thành:
+Ta có hệ phương trình như sau:
 
 $$ \begin{aligned}
     \begin{cases}
@@ -220,7 +235,7 @@ $$\begin{aligned}
     \begin{bmatrix}
         F(n) \\
         F(n-1)
-    \end{bmatrix} \\[2.5ex] 
+    \end{bmatrix} \\[2ex] 
 
     &= 
     \begin{bmatrix}
@@ -282,14 +297,11 @@ $$
     F(n) \\
     F(n-1)
 \end{bmatrix}
-
 = 
-
 \begin{bmatrix}
     1 & 1 \\
     1 & 0
 \end{bmatrix} ^ {n}
-
 \begin{bmatrix}
     F(0) \\
     F(-1)
@@ -314,7 +326,7 @@ $$ \begin{aligned}
         \begin{bmatrix}
             1 \\
             0
-        \end{bmatrix} \\[3ex]
+        \end{bmatrix} \\[2ex]
 
         \begin{bmatrix}
             F(n) \\
@@ -335,6 +347,7 @@ $$ \begin{aligned}
 \end{aligned} $$
 
 Sử dụng tính chất sau:
+
 $$
 \begin{cases}
     a = Mb \\
@@ -367,7 +380,6 @@ $$
     1 & 1 \\
     1 & 0
 \end{bmatrix} ^ {n}
-
 \begin{bmatrix}
     1 & 0 \\
     0 & 1
@@ -379,11 +391,70 @@ $$
 \end{bmatrix} ^ {n}
 $$
 
-Ta rút gọn được vì $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ là ma trận đơn vị
+Sau khi tối giản ma trận đơn vị, ta có được phương trình cần chứng minh.
 
 #### Chứng minh bằng quy nạp
 
-### Sử dụng phương pháp tính nhanh gấp đôi
+Với $n = 1$, ta có: $$\begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix} = \begin{bmatrix} F(2) & F(1) \\ F(1) & F(0) \end{bmatrix}$$
+
+Giả sử mệnh đề đúng với với $n \geq 1 $, tức là:
+
+$$\begin{bmatrix} 
+1 & 1 \\ 
+1 & 0 
+\end{bmatrix} ^ {n}
+= 
+\begin{bmatrix} 
+F(n+1) & F(n) \\ 
+F(n) & F(n-1) 
+\end{bmatrix}$$
+
+Ta cần chứng minh mệnh đề đúng với $n+1$, ta xét:
+
+$$
+\begin{align}
+\begin{bmatrix} 
+1 & 1 \\ 
+1 & 0 
+\end{bmatrix} ^ {n+1}
+
+&= \begin{bmatrix} 
+1 & 1 \\ 
+1 & 0 
+\end{bmatrix} ^ {n}
+\begin{bmatrix} 
+1 & 1 \\ 
+1 & 0 
+\end{bmatrix} \\[2ex]
+
+&= \begin{bmatrix} 
+F(n+1) & F(n) \\ 
+F(n) & F(n-1) 
+\end{bmatrix}
+\begin{bmatrix} 
+1 & 1 \\ 
+1 & 0 
+\end{bmatrix} \\[2ex]
+
+&= \begin{bmatrix} 
+F(n+1) + F(n) & F(n+1) + 0 \\ 
+F(n) + F(n-1) & F(n) + 0
+\end{bmatrix} \\[2ex]
+
+&= \begin{bmatrix} 
+F(n+2) & F(n+1) \\ 
+F(n+1) & F(n)
+\end{bmatrix}
+
+\end{align}
+$$
+
+Vậy mệnh đề đúng với mọi số nguyên n
+
+#### Thuật toán ứng dụng
+
+
+### Sử dụng phương pháp fast doubling (tạm dịch tính nhanh bình phương)
 
 ## Các nguồn tham khảo
 - Algorithms for Competitive Programming:
