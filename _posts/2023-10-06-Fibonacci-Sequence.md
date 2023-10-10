@@ -17,7 +17,7 @@ Dãy số Fibonacci là một dãy số quen thuộc bắt đầu bằng chuỗi
 
 $$ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 \dots$$
 
-Số thứ $n$ trong dãy số Fibonacci được kí hiệu là $F_n$, ta có $F_0 = 0$ và $F_1 = 1$, và với $n > 1$:
+Số thứ $n$ trong dãy số Fibonacci được kí hiệu là $F_n$ hoặc $F(n)$ (trong bài viết này sẽ dùng cả 2 cách viết), ta có $F_0 = 0$ và $F_1 = 1$, và với $n > 1$:
 
 $$F_n = F_{n-1} + F_{n-2}$$
 
@@ -122,7 +122,7 @@ def fibonacci_binet_formula_short(n: int) -> int:
     return int(round(fibo_n))
 ```
 
-> Phương trình Binet cần tính toán với số thập phân, dẫn đến khả năng sai số. Vì thế trong thực tế sẽ ít được sử dụng.
+> Phương trình Binet cần tính toán chính xác với số thập phân, và Python có một số [hạn chế trong việc lưu trữ giá trị thập phân](https://docs.python.org/3/tutorial/floatingpoint.html) dẫn đến khả năng sai số khi tính các số Fibonacci lớn. Vì thế trong thực tế sẽ ít được sử dụng.
 {: .prompt-danger }
 
 
@@ -152,7 +152,7 @@ def fibonacci_recursive(n: int) -> int:
 > Tuy nhiên, cách làm này tốn rất nhiều tài nguyên của máy và bị lặp lại phép tính nhiều lần
 {: .prompt-danger }
 
-Để cải thiện thuật toán, ta sẽ lưu trữ các giá trị đã tính toán được lại, để tránh phải tính toán nhiều lần.
+Để cải thiện thuật toán, ta sẽ lưu trữ các giá trị đã tính toán, để tránh phải lặp lại nhiều lần.
 
 Sau đây là code đệ quy tham khảo từ trang [realpython.com](https://realpython.com/fibonacci-sequence-python/#optimizing-the-recursive-algorithm-for-the-fibonacci-sequence)
 
@@ -166,24 +166,238 @@ def fibonacci_recursive(n: int) -> int:
     return cache[n]
 ```
 
-> Mặc dù đã cải thiện được rất nhiều về việc hiệu năng, nhưng ta có thể cải tiến thêm nữa
-{: .prompt-info }
-
-Ta có 2 điểm có thể cải thiện ở code trên:
-- Lưu trữ bằng mảng 1 chiều thay vì dùng dictionary để giảm bộ nhớ
-- Thay keyword `in` thành hàm `len()` để giảm thời gian thực thi. Tham khảo thêm ở [Python Wiki](https://wiki.python.org/moin/TimeComplexity)
-
-
+> Việc sử dụng hàm đệ quy để tính toán sẽ tạo ra rất nhiều vòng lặp, dẫn đến tình trạng tràn bộ nhớ `stack overflow`, và đối với hàm này thì máy của mình không thể chạy được với n > 2933
+{: .prompt-danger }
 
 ### Sử dụng ma trận
 
-### Sử dụng hàm 
+Ta có thể tìm số Fibonacci tại vị trí n, $F(n)$, trong phép tính sau:
+
+$$
+\begin{bmatrix}
+    1 & 1 \\
+    1 & 0
+\end{bmatrix} ^ {n}
+=
+\begin{bmatrix}
+    F(n+1) & F(n) \\
+    F(n) & F(n-1)
+\end{bmatrix}
+$$
+
+Như vậy để tìm $F(n)$, ta có thể luỹ thừa ma trận $\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ đến bậc n. Nội dung bên dưới sẽ cố gắng chứng minh phương trình này trước khi đi vào code ứng dụng.
+
+#### Chứng minh trực tiếp
+
+Trước khi suy luận phương trình trực tiếp, ta cần thống nhất rằng ở đây [dãy số Fibonacci có thể mở rộng theo chiều âm](https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers#Extension_to_negative_integers)
+
+Ta có:
+
+$$ F(n+1) = F(n) + F(n-1) $$
+
+
+Viết lại thành:
+
+$$ \begin{aligned}
+    \begin{cases}
+        F(n+1) &= F(n) + F(n-1) \\
+        F(n) &= F(n)
+    \end{cases}
+\end{aligned} $$
+
+Hệ phương trình này tương đương với phép tính ma trận sau:
+
+$$\begin{aligned}
+    \begin{bmatrix}
+        F(n+1) \\
+        F(n)
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        F(n) \\
+        F(n-1)
+    \end{bmatrix} \\[2.5ex] 
+
+    &= 
+    \begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix}
+
+    \begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix}
+
+    \begin{bmatrix}
+        F(n-1) \\
+        F(n-2)
+    \end{bmatrix} \\[2ex] 
+
+    &= 
+    \begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix} ^ {2}
+
+    \begin{bmatrix}
+        F(n-1) \\
+        F(n-2)
+    \end{bmatrix} \\[2ex] 
+
+    &= 
+    \begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix} ^ {3}
+
+    \begin{bmatrix}
+        F(n-2) \\
+        F(n-3)
+    \end{bmatrix} \\
+
+    &\dots \\
+    
+    &= 
+    \begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix} ^ {n}
+
+    \begin{bmatrix}
+        F(1) \\
+        F(0)
+    \end{bmatrix} \;\;\; (I) \\
+
+\end{aligned}$$
+
+Tương tự ta cũng có:
+
+$$  
+\begin{bmatrix}
+    F(n) \\
+    F(n-1)
+\end{bmatrix}
+
+= 
+
+\begin{bmatrix}
+    1 & 1 \\
+    1 & 0
+\end{bmatrix} ^ {n}
+
+\begin{bmatrix}
+    F(0) \\
+    F(-1)
+\end{bmatrix} \;\;\; (II)
+$$
+
+Thay $F(-1) = 1$, $F(0) = 0$, $F(1) = 1$ vào phương trình $(I)$ và $(II)$, ta có hệ:
+
+$$ \begin{aligned}
+    \begin{cases}
+
+        \begin{bmatrix}
+            F(n+1) \\
+            F(n)
+        \end{bmatrix}
+        &= 
+        \begin{bmatrix}
+            1 & 1 \\
+            1 & 0
+        \end{bmatrix} ^ {n}
+
+        \begin{bmatrix}
+            1 \\
+            0
+        \end{bmatrix} \\[3ex]
+
+        \begin{bmatrix}
+            F(n) \\
+            F(n-1)
+        \end{bmatrix}
+        &= 
+        \begin{bmatrix}
+            1 & 1 \\
+            1 & 0
+        \end{bmatrix} ^ {n}
+
+        \begin{bmatrix}
+            0 \\
+            1
+        \end{bmatrix} \\
+
+    \end{cases}
+\end{aligned} $$
+
+Sử dụng tính chất sau:
+$$
+\begin{cases}
+    a = Mb \\
+    c = Md
+\end{cases}
+
+\implies
+
+\begin{bmatrix}
+a \\ 
+c
+\end{bmatrix}
+=
+M
+\begin{bmatrix}
+b \\ 
+d
+\end{bmatrix}
+$$
+
+Ta được:
+
+$$
+\begin{bmatrix}
+    F(n+1) & F(n) \\
+    F(n) & F(n-1)
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1 & 1 \\
+    1 & 0
+\end{bmatrix} ^ {n}
+
+\begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1 & 1 \\
+    1 & 0
+\end{bmatrix} ^ {n}
+$$
+
+Ta rút gọn được vì $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ là ma trận đơn vị
+
+#### Chứng minh bằng quy nạp
+
+### Sử dụng phương pháp tính nhanh gấp đôi
 
 ## Các nguồn tham khảo
-- [Algorithms for Competitive Programming](https://cp-algorithms.com/algebra/fibonacci-numbers.html)
-- [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_sequence)
-- [Art of Problems Solving](https://artofproblemsolving.com/wiki/index.php/Binet%27s_Formula)
+- Algorithms for Competitive Programming:
+    - [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)
+- Wikipedia:
+    - [Fibonacci Sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence)
+    - [Generalizations of Fibonacci numbers](https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers#Extension_to_negative_integers)
+- Art of Problems Solving:
+    - [Binet Formula](https://artofproblemsolving.com/wiki/index.php/Binet%27s_Formula)
+- Proof Wiki:
+    - [Cassini's Identity](https://proofwiki.org/wiki/Cassini%27s_Identity/Lemma) (Fibonacci Q-Matrix)
+- Math World:
+    - [Fibonacci Number](https://mathworld.wolfram.com/FibonacciNumber.html)
+    - [Fibonacci Q-Matrix](https://mathworld.wolfram.com/FibonacciQ-Matrix.html)
 
-
-Hình ảnh được mình tạo bằng công cụ [Figma](https://www.figma.com/) <br>
-Ảnh động (gif) được mình tạo bằng công cụ [ezgif.com](https://ezgif.com/)
+Hình ảnh được tạo bằng công cụ [Figma](https://www.figma.com/) <br>
+Ảnh động được tạo bằng công cụ [ezgif.com](https://ezgif.com/)
