@@ -8,7 +8,7 @@ excerpt_separator: <!--excerpt-end-->
 ---
 
 <!--excerpt-start-->
-Bài viết này sẽ trình bày về chuỗi Fibonacci và các thuật toán trong Python để tìm số trong chuỗi Fibonacci ở vị trí cho trước. Mình cũng sẽ thảo luận về hiệu suất và khả năng xử lý của các thuật toán này.
+Bài viết này sẽ trình bày về dãy số Fibonacci và các thuật toán trong Python để tìm số ở vị trí cho trước. Mình cũng sẽ thảo luận về hiệu suất và khả năng xử lý của các thuật toán này.
 <!--excerpt-end-->
 
 
