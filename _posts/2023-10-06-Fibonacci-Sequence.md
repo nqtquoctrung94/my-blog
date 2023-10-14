@@ -17,7 +17,7 @@ Dãy số Fibonacci là một dãy số quen thuộc bắt đầu bằng chuỗi
 
 $$ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 \dots$$
 
-Số thứ $n$ trong dãy số Fibonacci được kí hiệu là $F_n$ hoặc $F_{n}$ (trong bài viết này sẽ dùng cả 2 cách viết), ta có $F_0 = 0$ và $F_1 = 1$, và với $n > 1$:
+Số thứ $n$ trong dãy số Fibonacci được kí hiệu là $F_n$ hoặc $F(n)$, ta có $F_0 = 0$ và $F_1 = 1$, và với $n > 1$:
 
 $$F_n = F_{n-1} + F_{n-2}$$
 
