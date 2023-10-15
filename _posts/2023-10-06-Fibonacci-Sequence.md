@@ -1,8 +1,8 @@
 ---
 title: Về dãy số Fibonacci
 date: 2023 Oct 06
-categories: [Math, Fibonacci Sequence]
-tags: [math, fibonacci, matrix]
+categories: [Algorithm, Fibonacci Sequence]
+tags: [algorithm, math, fibonacci sequence, binet's formula, matrix, recursion]
 math: true
 excerpt_separator: <!--excerpt-end-->
 ---
@@ -39,8 +39,8 @@ Ta có thể tạo một phương trình vòng lặp đơn giản với ý tư�
 - Bước 3: Tiếp tục lặp lại bước 2 đến khi a là giá trị $F_n$ cần tìm
 - Bước 4: Trả về a
 
-![Fibonacci Sequence light](/assets/img/fibonacci-sequence/fibonacci-linear-calculate-light.gif){: .light }
-![Fibonacci Sequence dark](/assets/img/fibonacci-sequence/fibonacci-linear-calculate-dark.gif){: .dark }
+![Fibonacci Linear Calculate light](/assets/img/fibonacci-sequence/fibonacci-linear-calculate-light.gif){: .light }
+![Fibonacci Linear Calculate dark](/assets/img/fibonacci-sequence/fibonacci-linear-calculate-dark.gif){: .dark }
 
 #### Thuật toán
 
@@ -137,15 +137,15 @@ def fibonacci_recursive(n: int) -> int:
 
 Ảnh động bên dưới sẽ miêu tả quá trình tính toán của thuật toán đệ quy
 
-![Fibonacci Sequence light](/assets/img/fibonacci-sequence/fibonacci-recursive-method-light.gif){: .light }
-![Fibonacci Sequence dark](/assets/img/fibonacci-sequence/fibonacci-recursive-method-dark.gif){: .dark }
+![Fibonacci Recursive Method light](/assets/img/fibonacci-sequence/fibonacci-recursive-method-light.gif){: .light }
+![Fibonacci Recursive Method dark](/assets/img/fibonacci-sequence/fibonacci-recursive-method-dark.gif){: .dark }
 
 #### Cải tiến
 
 Để cải thiện thuật toán, ta sẽ lưu trữ các giá trị đã tính toán, để tránh phải lặp lại nhiều lần.
 
-![Fibonacci Sequence light](/assets/img/fibonacci-sequence/fibonacci-recursive-cache-method-light.gif){: .light }
-![Fibonacci Sequence dark](/assets/img/fibonacci-sequence/fibonacci-recursive-cache-method-dark.gif){: .dark }
+![Fibonacci Recursive with Cache Method light](/assets/img/fibonacci-sequence/fibonacci-recursive-cache-method-light.gif){: .light }
+![Fibonacci Recursive with Cache Method dark](/assets/img/fibonacci-sequence/fibonacci-recursive-cache-method-dark.gif){: .dark }
 
 Sau đây là code đệ quy tham khảo từ trang [realpython.com](https://realpython.com/fibonacci-sequence-python/#optimizing-the-recursive-algorithm-for-the-fibonacci-sequence)
 
