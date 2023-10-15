@@ -144,7 +144,6 @@ def fibonacci_recursive(n: int) -> int:
 
 Để cải thiện thuật toán, ta sẽ lưu trữ các giá trị đã tính toán, để tránh phải lặp lại nhiều lần.
 
-
 ![Fibonacci Sequence light](/assets/img/fibonacci-sequence/fibonacci-recursive-cache-method-light.gif){: .light }
 ![Fibonacci Sequence dark](/assets/img/fibonacci-sequence/fibonacci-recursive-cache-method-dark.gif){: .dark }
 
@@ -181,7 +180,7 @@ $$
 \end{bmatrix}
 $$
 
-Để tìm $F_{n}$, ta có thể luỹ thừa ma trận $\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ đến bậc n. Nội dung bên dưới sẽ cố gắng chứng minh phương trình này trước khi đi vào code ứng dụng.
+Để tìm $F_{n}$, ta có thể luỹ thừa ma trận $$\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$$ đến bậc n. Nội dung bên dưới sẽ cố gắng chứng minh phương trình này trước khi đi vào code ứng dụng.
 
 #### Chứng minh trực tiếp
 
