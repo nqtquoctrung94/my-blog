@@ -18,8 +18,8 @@ Vì ô chữ số Sudoku cũng khá là quen thuộc rồi nên mình cũng khô
 - Sudoku là ô chữ số có dạng lưới 9x9 ô 
     - dạng tổng quát là $n^2 \times n^2$ ô (Không tính đến các biến thể khác như 6x6)
 - Mỗi hàng, mỗi cột, và mỗi ô 3x3 nhỏ phải chứa các số từ 1 đến 9 và không có số trùng nhau
-    - tương tự, thì dạng tổng quát là điền các số từ 1 đến $n$ vào các hàng, cột, và ô $n \times n$ nhỏ
     - (thực ra nếu có số trùng thì cũng không điền đủ các số từ 1 đến 9 được)
+    - tương tự, thì dạng tổng quát là điền các số từ 1 đến $n$ vào các hàng, cột, và ô $n \times n$ nhỏ
 
 ## Hiển thị Sudoku trong Python
 
