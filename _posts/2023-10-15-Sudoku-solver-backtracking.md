@@ -361,7 +361,7 @@ Output
 
 ## Thêm cơ chế dừng cho hàm backtracking
 
-Ừ thì mình đã có được lời giải cho hàm `sudoku_solver_reversed` rồi đấy. Nhưng hàm vẫn cứ chạy hoài, vậy có cách nào để dừng sau khi tìm được kết quả không? Một cách mình thử áp dụng đó là cho hàm trả về `ok` khi đã giải xong và dừng khi đã có signal `ok`.
+Ừ thì mình đã có được lời giải cho hàm `sudoku_solver_reversed` rồi đấy. Nhưng hàm vẫn cứ chạy hoài, vậy có cách nào để dừng sau khi tìm được kết quả không? Một cách mình thử áp dụng đó là cho hàm trả về `good` khi đã giải xong.
 
 ```python
 def sudoku_solver_reversed(grid):
