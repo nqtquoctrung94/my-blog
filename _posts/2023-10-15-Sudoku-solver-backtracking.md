@@ -402,6 +402,6 @@ def sudoku_solver_reversed(grid):
     - Games Computers Play: [Sudoku solvers: backtracking or logic?](https://www.youtube.com/watch?v=8kKlEnBxa5M)
 
 Papers:
-- [Musliu, N. and Winter, F. (2017) ‘A hybrid approach for the Sudoku problem: Using constraint programming in iterated local search’](https://www.dbai.tuwien.ac.at/research/project/arte/sudoku/paper.pdf)
+- Musliu, N. and Winter, F. (2017) [‘A hybrid approach for the Sudoku problem: Using constraint programming in iterated local search’](https://www.dbai.tuwien.ac.at/research/project/arte/sudoku/paper.pdf)
 
 Hình ảnh được tạo bằng công cụ [Figma](https://www.figma.com/) <br>
