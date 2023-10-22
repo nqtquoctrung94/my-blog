@@ -1,7 +1,7 @@
 ---
-title: Các tính chất và phép toán thường sử dụng
+title: Các phép toán thường sử dụng
 date: 2023 Oct 21
-categories: [Algorithm, Math Function]
+categories: [Algorithm]
 tags: [algorithm]
 math: true
 excerpt_separator: <!--excerpt-end-->
@@ -110,9 +110,9 @@ $$ \begin{align}
 **Logarit và số tự nhiên**: Hàm $log_e(x)$ còn được viết là $ln(x)$, hàm logarit của $e$ có một số tính chất sau:
 
 $$ \begin{align}
-    ln(e)   &= log_e(e)   &= 1    \\
-    ln(e^5) &= log_e(e^5) &= 5    \\
-    ln(1)   &= log_e(1)   &= 0
+    ln(e)   &= log_e(e)   = 1    \\
+    ln(e^5) &= log_e(e^5) = 5    \\
+    ln(1)   &= log_e(1)   = 0
 \end{align} $$
 
 **Đổi cơ số logarit**: Với $a,b > 0$ và $a \neq 1$, $b \neq 1$:
@@ -124,3 +124,103 @@ với mọi số thực $x > 0$
 **Hàm logarit là hàm đơn điệu**: Với $x_1$, $x_2$:
 
 $$x_1 \leq x_2 \ \implies log(x_1) \leq log(x_2) $$
+
+## Đạo hàm một biến
+
+Đạo hàm là một bước rất quan trọng của hầu hết các thuật toán tối ưu trong Học máy và Học sâu.
+
+**Định nghĩa của đạo hàm**
+
+Giả sử ta có hàm $f(x)$, đạo hàm của $f$ được định nghĩa là
+
+$$ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
+
+nếu giới hạn lim tồn tại. 
+
+**Tính chất của đạo hàm**
+
+Cho $y = f(x)$, trong các tài liệu , các cách viết sau là tương đương nhau:
+
+$$
+    f'(x) 
+    = y' 
+    = \frac{dy}{dx} 
+    = \frac{df}{dx} 
+    = \frac{d}{dx}f(x) 
+    = Df(x) 
+    = D_x f(x) 
+$$
+
+- $DC = 0$ (với $C$ là hằng số)
+- $De^x = e^x$
+- $Dln(x) = \frac{1}{x}$
+
+
+Một số quy tắc:
+
+- Quy tắc luỹ thừa: 
+
+$$(x^n)' = n.x^{n-1}$$
+
+- Quy tắc nhân hằng số: 
+
+$$[Cf(x)]' = C.f(x)' $$
+
+- Quy tắc tổng: 
+
+$$[f(x) + g(x)]' = f(x)' + g(x)'$$
+
+- Quy tắc nhân: 
+
+$$[f(x)g(x)]' = f(x)'g(x) + f(x)g(x)'$$
+
+- Quy tắc đạo hàm phân thức:
+
+$$\bigg[ \frac{f(x)}{g(x)} \bigg]' = \frac{ f(x)'g(x) + f(x)g(x)' }{ g(x)^2 }  $$
+
+## Đạo hàm riêng cho hàm nhiều biến
+
+Với $y = f(x_1, x_2, \dots, x_n)$ là hàm có $n$ biến. Đạo hàm riêng của $y$ theo $x_i$ là
+
+$$\frac{\partial y}{\partial x_i} = \lim_{h \to 0} \frac{f(x_1, \dots,x_{i-1}, x_i + h, x_{i+1} \dots, x_n) - f(x_1, \dots, x_i, \dots, x_n)}{h} $$
+
+Đối với đạo hàm theo $x_i$, ta có thể xem các giá trị $x_1, \dots, x_n$ (không bao gồm $x_i$) là các hằng số, và tính đạo hàm $y$ theo $x_i$
+
+Các ký hiệu đạo hàm riêng sau có ý nghĩa tương đương:
+
+$$
+    \frac{\partial y}{\partial x_i} 
+    = \frac{\partial f}{\partial x_i} 
+    = f_{x_i}
+    = f_i
+    = D_i f
+    = D_{x_i} f
+$$
+
+Ví dụ:
+
+Giả sử ta có phương trình 
+
+$$y = f(x_1, x_2)= 5x_1 + 10x_1x_2 + 3x_2$$
+
+Đạo hàm của $y$ theo $x_1$ và $x_2$ lần lượt là:
+
+$$ 
+\begin{align}
+    \frac{\partial y}{\partial x_1}
+    &= \frac{\partial}{\partial x_1}(5x_1 + 10x_1x_2 + 3x_2) \\[1ex]
+    &= \frac{\partial}{\partial x_1}(5x_1) + \frac{\partial}{\partial x_1} (10x_1x_2) + \frac{\partial}{\partial x_1}(3x_2) \\[1ex]
+    &= 5 + 10x_2 + 0 \\[1ex]
+    &= 10x_2 + 5
+\end{align}
+$$
+
+$$ 
+\begin{align}
+    \frac{\partial y}{\partial x_2}
+    &= \frac{\partial}{\partial x_2}(5x_1 + 10x_1x_2 + 3x_2) \\[1ex]
+    &= \frac{\partial}{\partial x_2}(5x_1) + \frac{\partial}{\partial x_2} (10x_1x_2) + \frac{\partial}{\partial x_2}(3x_2) \\[1ex]
+    &= 0 + 10x_1 + 3 \\[1ex]
+    &= 10x_1 + 3
+\end{align}
+$$
