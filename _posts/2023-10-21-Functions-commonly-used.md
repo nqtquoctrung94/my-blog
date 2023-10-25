@@ -201,15 +201,15 @@ Ví dụ:
 
 Giả sử ta có phương trình 
 
-$$y = f(x_1, x_2)= 5x_1 + 10x_1x_2 + 3x_2$$
+$$y = f(x_1, x_2)= 5x_1 + 10x_1x_2 + 3(x_2)^2$$
 
 Đạo hàm của $y$ theo $x_1$ và $x_2$ lần lượt là:
 
 $$ 
 \begin{align}
     \frac{\partial y}{\partial x_1}
-    &= \frac{\partial}{\partial x_1}(5x_1 + 10x_1x_2 + 3x_2) \\[1ex]
-    &= \frac{\partial}{\partial x_1}(5x_1) + \frac{\partial}{\partial x_1} (10x_1x_2) + \frac{\partial}{\partial x_1}(3x_2) \\[1ex]
+    &= \frac{\partial}{\partial x_1}(5x_1 + 10x_1x_2 + 3(x_2)^2) \\[1ex]
+    &= \frac{\partial}{\partial x_1}(5x_1) + \frac{\partial}{\partial x_1} (10x_1x_2) + \frac{\partial}{\partial x_1}(3(x_2)^2) \\[1ex]
     &= 5 + 10x_2 + 0 \\[1ex]
     &= 10x_2 + 5
 \end{align}
@@ -218,9 +218,9 @@ $$
 $$ 
 \begin{align}
     \frac{\partial y}{\partial x_2}
-    &= \frac{\partial}{\partial x_2}(5x_1 + 10x_1x_2 + 3x_2) \\[1ex]
-    &= \frac{\partial}{\partial x_2}(5x_1) + \frac{\partial}{\partial x_2} (10x_1x_2) + \frac{\partial}{\partial x_2}(3x_2) \\[1ex]
-    &= 0 + 10x_1 + 3 \\[1ex]
-    &= 10x_1 + 3
+    &= \frac{\partial}{\partial x_2}(5x_1 + 10x_1x_2 + 3(x_2)^2) \\[1ex]
+    &= \frac{\partial}{\partial x_2}(5x_1) + \frac{\partial}{\partial x_2} (10x_1x_2) + \frac{\partial}{\partial x_2}(3(x_2)^2) \\[1ex]
+    &= 0 + 10x_1 + 3.2x_2 \\[1ex]
+    &= 10x_1 + 6x_2
 \end{align}
 $$
