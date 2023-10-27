@@ -388,20 +388,16 @@ def sudoku_solver_reversed(grid):
 ```
 
 ## Các nguồn tham khảo và mở rộng
-- Geeks for Geeks:
-    - [Algorithm to Solve Sudoku \| Sudoku Solver](https://www.geeksforgeeks.org/sudoku-backtracking-7/)
-- Math World:
-    - [Sudoku](https://mathworld.wolfram.com/Sudoku.html)
-- Sudoku Wiki:
-    - [Strategy Families](https://www.sudokuwiki.org/Strategy_Families)
-- Wikipedia:
-    - [Sudoku solving algorithms](https://en.wikipedia.org/wiki/Sudoku_solving_algorithms)
-- Youtube channels:
+- Papers:
+    - Musliu, N. and Winter, F. (2017) [‘A hybrid approach for the Sudoku problem: Using constraint programming in iterated local search’](https://www.dbai.tuwien.ac.at/research/project/arte/sudoku/paper.pdf)
+- Websites:
+    - Geeks for Geeks: [Algorithm to Solve Sudoku \| Sudoku Solver](https://www.geeksforgeeks.org/sudoku-backtracking-7/)
+    - Math World: [Sudoku](https://mathworld.wolfram.com/Sudoku.html)
+    - Sudoku Wiki: [Strategy Families](https://www.sudokuwiki.org/Strategy_Families)
+    - Wikipedia: [Sudoku solving algorithms](https://en.wikipedia.org/wiki/Sudoku_solving_algorithms)
+- Youtube videos:
     - Computerphile: [Python Sudoku Solver](https://www.youtube.com/watch?v=G_UYXzGuqvM)
     - Games Computers Play: [Sudoku Solver in Python (using 10 different solving strategies)](https://www.youtube.com/watch?v=ek8LDDt2M44)
     - Games Computers Play: [Sudoku solvers: backtracking or logic?](https://www.youtube.com/watch?v=8kKlEnBxa5M)
 
-Papers:
-- Musliu, N. and Winter, F. (2017) [‘A hybrid approach for the Sudoku problem: Using constraint programming in iterated local search’](https://www.dbai.tuwien.ac.at/research/project/arte/sudoku/paper.pdf)
-
-Hình ảnh được tạo bằng công cụ [Figma](https://www.figma.com/) <br>
+Hình ảnh được tạo bằng công cụ [Figma](https://www.figma.com/)

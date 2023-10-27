@@ -584,26 +584,20 @@ def fibonacci_fast_doubling(n):
 | Ma trận                |               O(logN)               |                  O(1)                 |
 | Tính nhanh bình phương |               O(logN)               |                  O(N)                 |
 
-## Các nguồn tham khảo
-- Algorithms for Competitive Programming:
-    - [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)
-- Art of Problems Solving:
-    - [Binet Formula](https://artofproblemsolving.com/wiki/index.php/Binet%27s_Formula)
-- Geeks for Geeks:
-    - [Nth Fibonacci Number](https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/)
-    - [Fast Doubling method to find the Nth Fibonacci number](https://www.geeksforgeeks.org/fast-doubling-method-to-find-the-nth-fibonacci-number/)
-- Math World:
-    - [Fibonacci Number](https://mathworld.wolfram.com/FibonacciNumber.html)
-    - [Fibonacci Q-Matrix](https://mathworld.wolfram.com/FibonacciQ-Matrix.html)
-- Oran Looney:
-    - [A Fairly Fast Fibonacci Function](https://www.oranlooney.com/post/fibonacci/)
-- Project Nayuki:
-    - [Fast Fibonacci algorithms](https://www.nayuki.io/page/fast-fibonacci-algorithms)
-- Proof Wiki:
-    - [Cassini's Identity](https://proofwiki.org/wiki/Cassini%27s_Identity/Lemma) (Fibonacci Q-Matrix)
-- Wikipedia:
-    - [Fibonacci Sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence)
-    - [Generalizations of Fibonacci numbers](https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers#Extension_to_negative_integers)
+## Các nguồn tham khảo và mở rộng
+
+- Websites:
+    - Algorithms for Competitive Programming: [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)
+    - Art of Problems Solving: [Binet Formula](https://artofproblemsolving.com/wiki/index.php/Binet%27s_Formula)
+    - Geeks for Geeks: [Nth Fibonacci Number](https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/)
+    - Geeks for Geeks: [Fast Doubling method to find the Nth Fibonacci number](https://www.geeksforgeeks.org/fast-doubling-method-to-find-the-nth-fibonacci-number/)
+    - Math World: [Fibonacci Number](https://mathworld.wolfram.com/FibonacciNumber.html)
+    - Math World: [Fibonacci Q-Matrix](https://mathworld.wolfram.com/FibonacciQ-Matrix.html)
+    - Oran Looney: [A Fairly Fast Fibonacci Function](https://www.oranlooney.com/post/fibonacci/)
+    - Project Nayuki: [Fast Fibonacci algorithms](https://www.nayuki.io/page/fast-fibonacci-algorithms)
+    - Proof Wiki: [Cassini's Identity](https://proofwiki.org/wiki/Cassini%27s_Identity/Lemma)
+    - Wikipedia: [Fibonacci Sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence)
+    - Wikipedia: [Generalizations of Fibonacci numbers](https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers#Extension_to_negative_integers)
 
 Hình ảnh được tạo bằng công cụ [Figma](https://www.figma.com/) <br>
 Ảnh động được tạo bằng công cụ [ezgif.com](https://ezgif.com/)
