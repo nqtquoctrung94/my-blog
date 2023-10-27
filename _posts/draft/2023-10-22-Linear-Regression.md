@@ -186,14 +186,16 @@ $$
 
 ```python
 def cost_function(marketing, profit, w0, w1):
-    data_size = len(profit)
+    data_size = len(marketing)
     total_error = 0
+
     for i in range(data_size):
-        total_error += (profit[i] - (w0 + w1*marketing[i]))
+        total_error += (profit[i] - (w0 + w1*marketing[i]))**2
+
     return total_error / data_size
 ```
 
-### Hàm hạ độ dốc
+### Tính tham số bằng phương pháp hạ độ dốc
 
 $$
 \begin{align}
@@ -206,7 +208,7 @@ $$
 def gradient_descent(marketing, profit, w0_input, w1_input, learning_rate):
     w0_gradient = 0
     w1_gradient = 0
-    data_size = len(profit)
+    data_size = len(marketing)
 
     # Tính tổng đạo hàm
     for i in range(data_size):
@@ -228,6 +230,7 @@ def gradient_descent(marketing, profit, w0_input, w1_input, learning_rate):
 ```python
 def train(marketing, profit, w0, w1, learning_rate, loop_count):
     cost_records = []
+    cost = cost_function(marketing, profit, w0, w1)
 
     for loop in range(1, loop_count+1):
         # Cập nhật tham số
@@ -236,7 +239,7 @@ def train(marketing, profit, w0, w1, learning_rate, loop_count):
         # Tính chi phí (độ sai lệch)
         cost = cost_function(marketing, profit, w0, w1)
         cost_records.append(cost)
-
+        
         # In ra giá trị tại một số vòng lặp
         if loop % 10 == 0:
             print(f"loop={loop}    w0={w0:.4f}    w1={w1:.4f}    cost={cost:.4f}")
@@ -247,32 +250,49 @@ def train(marketing, profit, w0, w1, learning_rate, loop_count):
 ### Chạy chương trình với biến đầu vào
 
 ```python
-marketing = df['Marketing'].values
-profit = df['Profit'].values
-w0 = 20
-w1 = 5
-learning_rate = 0.00001
-loop_count=100
-train(marketing, profit, w0, w1, learning_rate, loop_count)
+# Load thư viện
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load dữ liệu
+df = pd.read_csv("sample_data.csv")
+
+# Chạy mô hình, lưu lại giá trị w0, w1 cuối và cost record của từng bước huấn luyện
+w0, w1, cost_record = train(
+    marketing = df['Marketing'].values, 
+    profit = df['Profit'].values, 
+    w0 = 0, 
+    w1 = 0, 
+    learning_rate = 0.00001, 
+    loop_count = 30
+)
 ```
 
-| loop 	|   $w_0$ 	|   $w_1$ 	|       cost 	|
-|-----:	|--------:	|--------:	|-----------:	|
-|    0 	| 20.0000 	|  5.0000 	| -1056.0000 	|
-|    1 	| 19.9789 	| -1.0039 	|   333.3671 	|
-|    2 	| 19.9855 	|  0.8247 	|   -89.7723 	|
-|    3 	| 19.9838 	|  0.2678 	|    39.0971 	|
-|    4 	| 19.9845 	|  0.4374 	|    -0.1509 	|
-|    5 	| 19.9845 	|  0.3857 	|    11.8023 	|
-|    6 	| 19.9848 	|  0.4014 	|     8.1618 	|
-|    7 	| 19.9849 	|  0.3967 	|     9.2705 	|
-|    8 	| 19.9851 	|  0.3981 	|     8.9328 	|
-|    9 	| 19.9853 	|  0.3977 	|     9.0356 	|
-|   10 	| 19.9855 	|  0.3978 	|     9.0043 	|
-|   20 	| 19.9873 	|  0.3978 	|     9.0113 	|
-|   30 	| 19.9891 	|  0.3978 	|     9.0109 	|
-|   40 	| 19.9909 	|  0.3978 	|     9.0106 	|
-|   50 	| 19.9927 	|  0.3977 	|     9.0103 	|
+### Kiểm nghiệm
+
+Sau đây là kết quả tại một số điểm nhận được
+
+| loop | $w_0$  | $w_1$  | cost       |
+|------|--------|--------|------------|
+|    0 |      0 |      0 | 15733.8636 |
+|    1 | 0.0024 | 0.6114 |  2735.1620 |
+|    2 | 0.0020 | 0.4252 |  1529.4739 |
+|    3 | 0.0025 | 0.4819 |  1417.6357 |
+|    4 | 0.0027 | 0.4646 |  1407.2565 |
+|    5 | 0.0029 | 0.4699 |  1406.2880 |
+| ...  | ...    | ...    | ...        |
+|   10 | 0.0042 | 0.4687 |  1406.1579 |
+|   20 | 0.0067 | 0.4687 |  1406.0945 |
+|   30 | 0.0092 | 0.4686 |  1406.0312 |
+
+
+Sử dụng giá trị cuối, ta thu được phương trình:
+
+$$h(x) = \text{Profit} = 0.0092 + 0.4686 \times \text{Marketing}$$
+
+![Linear Regression result light](/assets/img/linear-regression/linear-regression-result-light.png){: .light }
+![Linear Regression result dark](/assets/img/linear-regression/linear-regression-result-dark.png){: .dark }
+
 
 
 ## Các nguồn tham khảo và mở rộng
