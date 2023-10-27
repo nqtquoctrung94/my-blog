@@ -1,5 +1,5 @@
 ---
-title: Về phương trình hồi quy tuyến tính đơn biến
+title: Về hồi quy tuyến tính đơn biến
 date: 2023 Oct 22
 categories: [Machine Learning, Linear Regression]
 tags: [machine learning, linear regression]
@@ -11,7 +11,7 @@ excerpt_separator: <!--excerpt-end-->
 Trong bài này mình sẽ bàn về 2 phương pháp được dùng để xác định phương trình hồi quy tuyến tính của 1 biến trong mô hình học máy.
 <!--excerpt-end-->
 
-## Hồi quy tuyến tính với 1 giá trị (Hồi quy tuyến tính đơn biến)
+## Phương pháp hạ Gradient (Gradient Descent)
 
 ### Xác định mục tiêu
 
@@ -65,7 +65,7 @@ Chúng ta có giá trị dự đoán như sau
 ![Sample prediction line dark](/assets/img/linear-regression/sample-random-yhat-dark.png){: .dark }
 
 
-Chúng ta có thể tính được sai số (độ chênh lệch) giữa giá trị dự đoán $h(x)$ và giá trị thực tế `Profit` bằng cách tính khoảng cách đơn giản. Chúng ta thiết lập phương trình tính sai số tại giá trị ngẫu nhiên $x_i$:
+Chúng ta có thể tính được sai số (độ chênh lệch) giữa giá trị dự đoán $h(x)$ và giá trị thực tế `Profit`. Ta thiết lập phương trình tính sai số tại giá trị ngẫu nhiên $x_i$ như sau:
 
 $$
 \begin{align}
@@ -83,7 +83,7 @@ $$
 
 ### Hàm mất mát và Hàm chi phí
 
-Trước tiên, chúng ta hãy nhắc lại phép ước lượng thường thấy trong thống kê, phương trình sai số toàn phương trung bình (Mean Square Error):
+Trước tiên, chúng ta cùng nhắc lại phương trình sai số toàn phương trung bình (Mean Square Error):
 
 $$ 
 \begin{align}
@@ -94,7 +94,7 @@ $$
 
 Ở đây, chúng ta dùng chính phương trình MSE làm hàm chi phí của bài toán. Với:
 
-- `Hàm mất mát (loss function)` tại điểm $x_i$ được xây dựng để thông báo với chúng ta rằng, với giá trị $x_i$ ghép vào hàm $h(x)$, kết quả $\hat{y}_i = h(x_i)$ nhận được đang lệch với giá trị $y_i$ là bao nhiêu:
+- `Hàm mất mát (loss function)` là bình phương độ lệch của giá trị dự đoán $\hat{y}_i = h(x_i)$ so với giá trị $y_i$ tại điểm $x_i$:
 
 $$ l^{(i)}(w_0, w_1) = (y_i - \hat{y_i})^2 $$
 
@@ -107,11 +107,11 @@ $$
 \end{align}
 $$
 
-Để mô hình dự đoán được chính xác, ta cần phải khiến cho giá trị của hàm mất mát là nhỏ nhất.
+Để mô hình dự đoán được chính xác nhất, ta cần phải khiến cho giá trị của hàm mất mát là nhỏ nhất.
 
 ### Hạ độ dốc (thường gọi là Hạ Gradient - Gradient descent)
 
-Bây giờ, mục tiêu của chúng ta là tìm cặp giá trị $w_0$ và $w_1$ sao cho hàm chi phí đạt giá trị nhỏ nhất, nhưng chúng ta vẫn chưa thấy $w_0$ và $w_1$ trong hàm Cost function. Ta viết lại hàm chi phí một chút:
+Bây giờ, mục tiêu của chúng ta là tìm cặp giá trị $w_0$ và $w_1$ sao cho hàm chi phí đạt giá trị nhỏ nhất, nhưng chúng ta vẫn chưa thấy $w_0$ và $w_1$ trong hàm Cost function. Ta viết lại như sau:
 
 Với $\hat{y_j} = h(x_j) = w_0 + w_1x$
 
@@ -171,11 +171,13 @@ Lưu ý rằng ở đây cần update $w_0$ và $w_1$ đồng thời (hoặc s�
 
 Như vậy là chúng ta đã xong ý tưởng để xây dựng thuật toán Hồi quy tuyến tính đơn biến. Bây giờ chúng ta có thể bắt tay vào viết code.
 
-## Xây dựng mô hình 
+### Xây dựng code 
 
-Ở đây, chúng ta sẽ xây dựng hàm với các biến nhập vào đúng với các giá trị đã thảo luận nãy giờ, để dễ theo dõi.
+Ở đây, chúng ta sẽ xây dựng hàm với ví dụ được đưa ra.
 
-### Hàm chi phí
+$$\text{Profit}_\text{dự đoán} = \hat{y} = h(x) = w_0 + w_1* \text{Marketing} $$
+
+#### Hàm chi phí
 
 $$
 \begin{align}
@@ -195,7 +197,7 @@ def cost_function(marketing, profit, w0, w1):
     return total_error / data_size
 ```
 
-### Tính tham số bằng phương pháp hạ độ dốc
+#### Tính tham số bằng phương pháp hạ độ dốc
 
 $$
 \begin{align}
@@ -225,29 +227,37 @@ def gradient_descent(marketing, profit, w0_input, w1_input, learning_rate):
     return w0_new, w1_new
 ```
 
-### Hàm huấn luyện mô hình
+#### Hàm huấn luyện mô hình
 
 ```python
 def train(marketing, profit, w0, w1, learning_rate, loop_count):
-    cost_records = []
+    # Tính cost và in ra giá trị đầu vào
     cost = cost_function(marketing, profit, w0, w1)
+    print(f"loop=0    w0={w0:.4f}    w1={w1:.4f}    cost={cost:.4f}")
+    
+    # Lưu giá trị đầu vào
+    w0_records = [w0]
+    w1_records = [w1]
+    cost_records = [cost]
 
     for loop in range(1, loop_count+1):
         # Cập nhật tham số
         w0, w1 = gradient_descent(marketing, profit, w0, w1, learning_rate)
+        w0_records.append(w0)
+        w1_records.append(w1)
 
         # Tính chi phí (độ sai lệch)
         cost = cost_function(marketing, profit, w0, w1)
         cost_records.append(cost)
-        
+
         # In ra giá trị tại một số vòng lặp
-        if loop % 10 == 0:
+        if (loop < 6) or (loop % 10 == 0):
             print(f"loop={loop}    w0={w0:.4f}    w1={w1:.4f}    cost={cost:.4f}")
 
-    return w0, w1, cost_records
+    return w0_records, w1_records, cost_records
 ```
 
-### Chạy chương trình với biến đầu vào
+#### Chạy chương trình với biến đầu vào
 
 ```python
 # Load thư viện
@@ -268,9 +278,9 @@ w0, w1, cost_record = train(
 )
 ```
 
-### Kiểm nghiệm
+#### Kết quả
 
-Sau đây là kết quả tại một số điểm nhận được
+Sau đây là kết quả của quá trình train tại một số điểm nhận được
 
 | loop | $w_0$  | $w_1$  | cost       |
 |------|--------|--------|------------|
@@ -280,7 +290,6 @@ Sau đây là kết quả tại một số điểm nhận được
 |    3 | 0.0025 | 0.4819 |  1417.6357 |
 |    4 | 0.0027 | 0.4646 |  1407.2565 |
 |    5 | 0.0029 | 0.4699 |  1406.2880 |
-| ...  | ...    | ...    | ...        |
 |   10 | 0.0042 | 0.4687 |  1406.1579 |
 |   20 | 0.0067 | 0.4687 |  1406.0945 |
 |   30 | 0.0092 | 0.4686 |  1406.0312 |
@@ -290,21 +299,39 @@ Sử dụng giá trị cuối, ta thu được phương trình:
 
 $$h(x) = \text{Profit} = 0.0092 + 0.4686 \times \text{Marketing}$$
 
-![Linear Regression result light](/assets/img/linear-regression/linear-regression-result-light.png){: .light }
-![Linear Regression result dark](/assets/img/linear-regression/linear-regression-result-dark.png){: .dark }
+Cùng nhìn lại quá trình vòng lặp hạ gradient:
+
+![Linear Regression result light](/assets/img/linear-regression/linear-regression-result-light.gif){: .light }
+![Linear Regression result dark](/assets/img/linear-regression/linear-regression-result-dark.gif){: .dark }
+
+Chúng ta thấy rằng từ vòng lặp thứ 4 trở về sau thì kết quả gần như thay đổi rất ít. Điều này có thể là do:
+- Khi giá trị của cost function thấp, thì $w_0$ và $w_1$ cũng di chuyển ít hơn (xem mục `Cập nhật tham số $w_0$ và $w_1$ và xác định đường thẳng hồi quy tuyến tính` ) $\rightarrow$ cost function sau đó có ít khác biệt.
+- Giá trị `learning_rate` nhỏ. Việc để giá trị `learning_rate` sẽ giúp chúng ta đi từng bước nhỏ đến cost thấp nhất. 
+    - Tuy nhiên, nếu chúng ta để giá trị quá thấp, hàm sẽ cần nhiều vòng lặp hơn để đến giá trị $w_0$ và $w_1$ sao cho hàm chi phí là thấp nhất. 
+    - Nếu chúng ta để `learning_rate` quá cao, giá trị $w_0$ và $w_1$ có thể bị lệch xa khỏi điểm thấp nhất. Với độ lệch cao nhân với learning_rate cao, có thể chúng ta sẽ không bao giờ tìm được giá trị nhỏ nhất của phương trình.
+        - Để làm rõ hơn về ý này, chúng ta có thể tham khảo bài giảng sau của thầy Andrew Ng, đoạn 5:40 đến 7:50
+            {% include embed/youtube.html id='DS83GeqWQqs'%}
 
 
+## Phương pháp Phương trình chuẩn (The Normal Equations)
+
+Sẽ cập nhật sau
 
 ## Các nguồn tham khảo và mở rộng
+- Websites (Vietnamese):
+    - Bệnh Viện Đa Khoa Trung Tâm An Giang: [PHÂN TÍCH HỒI QUI TUYẾN TÍNH ĐƠN GIẢN](https://bvag.com.vn/wp-content/uploads/2013/01/k2_attachments_PHAN-TICH-HOI-QUY-TUYEN-TINH-DON-GIAN.pdf)
+    - Cafe Dev: [Tự học ML \| Phương trình chuẩn trong hồi quy tuyến tính](https://cafedev.vn/tu-hoc-ml-phuong-trinh-chuan-trong-hoi-quy-tuyen-tinh/)
+    - Đắm mình vào học sâu: [Mạng nơ-ron Tuyến tính \| Hồi quy Tuyến tính](https://d2l.aivivn.com/chapter_linear-networks/linear-regression_vn.html#cac-thanh-phan-co-ban-cua-hoi-quy-tuyen-tinh)
+    - Machine Learning cơ bản: [Bài 3: Linear Regression](https://machinelearningcoban.com/2016/12/28/linearregression/)
+    - Thuật ngữ chuyên ngành Học máy: [Hồi Quy Tuyến Tính (Linear Regression)](https://ml-glossary-vn.readthedocs.io/vi/latest/linear_regression_vn.html)
+    - Trí tuệ nhân tạo: [Bài 3: Linear Regression (Hồi quy tuyến tính)](https://trituenhantao.io/machine-learning-co-ban/bai-3-linear-regression-hoi-quy-tuyen-tinh/)
+    - Viblo: [Tìm Hiểu Công Thức Toán Của Phương Pháp Hồi Quy Tuyến Tính Qua Bài Toán Dự Báo Xả Lũ (Understanding The Linear Regression)](https://viblo.asia/p/tim-hieu-cong-thuc-toan-cua-phuong-phap-hoi-quy-tuyen-tinh-qua-bai-toan-du-bao-xa-lu-understanding-the-linear-regression-E375z7mdKGW)
 
-- https://www.scribbr.com/statistics/simple-linear-regression/
-- https://online.stat.psu.edu/stat462/node/79/
-- https://trituenhantao.io/machine-learning-co-ban/bai-3-linear-regression-hoi-quy-tuyen-tinh/
-- https://machinelearningcoban.com/2016/12/28/linearregression/
-- https://d2l.aivivn.com/chapter_linear-networks/linear-regression_vn.html#cac-thanh-phan-co-ban-cua-hoi-quy-tuyen-tinh
-- https://www.ncl.ac.uk/webtemplate/ask-assets/external/maths-resources/statistics/regression-and-correlation/simple-linear-regression.html
-- https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU
-- https://cs229.stanford.edu/main_notes.pdf
-- https://viblo.asia/p/tim-hieu-cong-thuc-toan-cua-phuong-phap-hoi-quy-tuyen-tinh-qua-bai-toan-du-bao-xa-lu-understanding-the-linear-regression-E375z7mdKGW
-- https://bvag.com.vn/wp-content/uploads/2013/01/k2_attachments_PHAN-TICH-HOI-QUY-TUYEN-TINH-DON-GIAN.pdf
-- https://ml-glossary-vn.readthedocs.io/vi/latest/linear_regression_vn.html
+- Websites (English):
+    - Newcastle University: [Simple Linear Regression](https://www.ncl.ac.uk/webtemplate/ask-assets/external/maths-resources/statistics/regression-and-correlation/simple-linear-regression.html)
+    - Penn State: [Lesson 2: Simple Linear Regression (SLR) Model](https://online.stat.psu.edu/stat462/node/79/)
+    - Scribbr: [Simple Linear Regression \| An Easy Introduction & Examples](https://www.scribbr.com/statistics/simple-linear-regression/)
+    - Stanford University: [CS229 Lecture Notes](https://cs229.stanford.edu/main_notes.pdf)
+
+- Youtube videos:
+    - Stanford Online: [CS229: Machine Learning](https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU)
