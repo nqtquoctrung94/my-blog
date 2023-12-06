@@ -1,14 +1,14 @@
 ---
-title: Về hồi quy tuyến tính đơn biến
+title: Về hồi quy tuyến tính đơn biến và Phương pháp Hạ Gradient
 date: 2023 Oct 22
 categories: [Machine Learning, Linear Regression]
-tags: [machine learning, linear regression]
+tags: [machine learning, linear regression, gradient descent]
 math: true
 excerpt_separator: <!--excerpt-end-->
 ---
 
 <!--excerpt-start-->
-Trong bài này mình sẽ bàn về 2 phương pháp được dùng để xác định phương trình hồi quy tuyến tính của 1 biến trong mô hình học máy.
+Trong bài này mình sẽ bàn về phương trình hồi quy tuyến tính của 1 biến trong mô hình học máy, và phương pháp hạ gradient trong mô hình này.
 <!--excerpt-end-->
 
 ## Phương pháp hạ Gradient (Gradient Descent)
@@ -280,7 +280,7 @@ w0, w1, cost_record = train(
 
 #### Kết quả
 
-Sau đây là kết quả của quá trình train tại một số điểm nhận được
+Sau đây là kết quả của quá trình train tại một số điểm chọn lọc
 
 | loop | $w_0$  | $w_1$  | cost       |
 |------|--------|--------|------------|
@@ -299,23 +299,71 @@ Sử dụng giá trị cuối, ta thu được phương trình:
 
 $$h(x) = \text{Profit} = 0.0092 + 0.4686 \times \text{Marketing}$$
 
-Cùng nhìn lại quá trình vòng lặp hạ gradient:
+Cùng nhìn lại quá trình vòng lặp hạ gradient. 
 
 ![Linear Regression result light](/assets/img/linear-regression/linear-regression-result-light.gif){: .light }
 ![Linear Regression result dark](/assets/img/linear-regression/linear-regression-result-dark.gif){: .dark }
 
-Chúng ta thấy rằng từ vòng lặp thứ 4 trở về sau thì kết quả gần như thay đổi rất ít. Điều này có thể là do:
-- Khi giá trị của cost function thấp, thì $w_0$ và $w_1$ cũng di chuyển ít hơn (xem mục `Cập nhật tham số $w_0$ và $w_1$ và xác định đường thẳng hồi quy tuyến tính` ) $\rightarrow$ cost function sau đó có ít khác biệt.
-- Giá trị `learning_rate` nhỏ. Việc để giá trị `learning_rate` sẽ giúp chúng ta đi từng bước nhỏ đến cost thấp nhất. 
-    - Tuy nhiên, nếu chúng ta để giá trị quá thấp, hàm sẽ cần nhiều vòng lặp hơn để đến giá trị $w_0$ và $w_1$ sao cho hàm chi phí là thấp nhất. 
-    - Nếu chúng ta để `learning_rate` quá cao, giá trị $w_0$ và $w_1$ có thể bị lệch xa khỏi điểm thấp nhất. Với độ lệch cao nhân với learning_rate cao, có thể chúng ta sẽ không bao giờ tìm được giá trị nhỏ nhất của phương trình.
-        - Để làm rõ hơn về ý này, chúng ta có thể tham khảo bài giảng sau của thầy Andrew Ng, đoạn 5:40 đến 7:50
-            {% include embed/youtube.html id='DS83GeqWQqs'%}
+Chúng ta thấy rằng từ vòng lặp thứ 4 trở về sau thì kết quả gần như thay đổi rất ít. Điều này có thể là do: giá trị đạo hàm của `cost function` thấp, `learning_rate` thấp, hoặc do kết quả của chúng ta đang ở một trong những vùng đáy cực tiểu.
+
+#### Nhận xét về giá trị của learning_rate
+
+![Learning Rate on the result of Gradient Descent](/assets/img/linear-regression/gradient-descent-learning-rate.png)
+
+##### Trong trường hợp learning_rate quá cao
+
+Khi giá trị của learning_rate quá cao, $w_0$ và $w_1$ mới cho ra kết quả lệch nhiều so với vị trí cực tiểu mà ta mong muốn.
+
+Chúng ta có thể thử chạy mô hình với các giá trị sau đây 
+
+```python
+# Chạy huấn luyện mô hình
+w0_records, w1_records, cost_record = train(
+    marketing = df['Marketing'].values, 
+    profit = df['Profit'].values, 
+    w0 = 50, 
+    w1 = 0.2, 
+    learning_rate = 0.0001, 
+    loop_count = 30
+)
+```
+
+Sau đây là kết quả nhận được
 
 
-## Phương pháp Phương trình chuẩn (The Normal Equations)
+```
+| loop |        w_0       |        w_1         |        cost       |
+|------|------------------|--------------------|-------------------|
+|    0 |           50.000 |              0.200 |         1 138.442 |
+|    1 |           50.005 |              1.391 |        79 466.038 |
+|    2 |           49.955 |           - 12.954 |    11 444 440.523 |
+|    3 |           50.569 |            159.840 | 1 660 449 935.317 |
+|    4 |           43.185 |        - 1 921.564 |      2.41 * 10^11 |
+|    5 |          132.134 |         23 150.102 |      3.50 * 10^13 |
+|    6 |         -939.297 |      - 278 852.024 |      5.07 * 10^15 |
+|    7 |       11 966.694 |      3 358 931.217 |      7.36 * 10^17 |
+|    8 |    - 143 493.119 |   - 40 460 187.270 |      1.07 * 10^20 |
+|    9 |    1 729 106.635 |    487 365 419.200 |      1.55 * 10^22 |
+|   10 | - 20 827 396.880 | -5 870 587 010.099 |      2.25 * 10^24 |
+|   20 |   - 1.34 * 10^18 |     - 3.78 * 10^20 |      9.30 * 10^45 |
+|   30 |   - 8.61 * 10^28 |     - 2.43 * 10^31 |      3.84 * 10^67 |
+```
 
-Sẽ cập nhật sau
+Ta thấy rằng, giá trị cost function của chúng ta không giảm, mà còn ngày càng tăng dần theo cấp số nhân. Ta nhận xét rằng kết quả đang bị vượt quá giá trị học tối ưu (overshoot) và ngày càng ra xa khỏi giá trị thấp nhất (diverge)
+
+##### Trong trường hợp learning_rate quá thấp
+
+Khi giá trị của learning_rate quá thấp, mô hình sẽ tốn rất nhiều thời gian để đi đến giá trị tối ưu, chúng ta có thể thử áp dụng với các learning rate khác nhau để xem sự khác biệt.
+
+Ví dụ minh hoạ cho việc áp dụng learning_rate khác nhau cho mô hình học máy với đầu vào w0 = 0, w1 = 0
+
+![Linear Regression result light](/assets/img/linear-regression/sample-different-learning-rate-light.png){: .light }
+![Linear Regression result dark](/assets/img/linear-regression/sample-different-learning-rate-dark.png){: .dark }
+
+Xin hãy tham khảo bài giảng sau của thầy Andrew Ng về Learning Rate (đoạn 5:40 đến 7:50)
+
+{% include embed/youtube.html id='DS83GeqWQqs'%}
+
 
 ## Các nguồn tham khảo và mở rộng
 - Websites (Vietnamese):
