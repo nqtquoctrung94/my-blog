@@ -11,9 +11,7 @@ excerpt_separator: <!--excerpt-end-->
 Trong bài này mình sẽ bàn về phương trình hồi quy tuyến tính của 1 biến trong mô hình học máy, và phương pháp hạ gradient trong mô hình này.
 <!--excerpt-end-->
 
-## Phương pháp hạ Gradient (Gradient Descent)
-
-### Xác định mục tiêu
+## Xác định mục tiêu
 
 Giả sử chúng ta có một bảng thống kê các lần chi tiêu cho bộ phận Marketing (cột `Marketing`) và lợi nhuận thu về từ các lần vận hành (cột `Profit`):
 
@@ -42,7 +40,7 @@ Chúng ta có flow xử lý bài toán như sau:
 ![Linear Regression process light](/assets/img/linear-regression/ML-process-light.png){: .light }
 ![Linear Regression process dark](/assets/img/linear-regression/ML-process-dark.png){: .dark }
 
-### Sai số giữa giá trị dự đoán và thực tế
+## Sai số giữa giá trị dự đoán và thực tế
 
 Giả định chúng ta đoán mò phương trình $h(x)$ với $w_0 = 50$ và $w_1 = 0.2$:
 
@@ -81,7 +79,7 @@ $$
 {: .prompt-info }
 
 
-### Hàm mất mát và Hàm chi phí
+## Hàm mất mát và Hàm chi phí
 
 Trước tiên, chúng ta cùng nhắc lại phương trình sai số toàn phương trung bình (Mean Square Error):
 
@@ -109,7 +107,7 @@ $$
 
 Để mô hình dự đoán được chính xác nhất, ta cần phải khiến cho giá trị của hàm mất mát là nhỏ nhất.
 
-### Hạ độ dốc (thường gọi là Hạ Gradient - Gradient descent)
+## Hạ độ dốc (thường gọi là Hạ Gradient - Gradient descent)
 
 Bây giờ, mục tiêu của chúng ta là tìm cặp giá trị $w_0$ và $w_1$ sao cho hàm chi phí đạt giá trị nhỏ nhất, nhưng chúng ta vẫn chưa thấy $w_0$ và $w_1$ trong hàm Cost function. Ta viết lại như sau:
 
@@ -148,7 +146,7 @@ $$
 \end{align}
 $$
 
-### Cập nhật tham số $w_0$ và $w_1$ và xác định đường thẳng hồi quy tuyến tính
+## Cập nhật tham số $w_0$ và $w_1$ và xác định đường thẳng hồi quy tuyến tính
 
 Để hàm đi đến giá trị cực tiểu, chúng ta cần:
 - Cập nhật giá trị $w_0$ và $w_1$ theo phương hướng của đạo hàm
@@ -171,13 +169,13 @@ Lưu ý rằng ở đây cần update $w_0$ và $w_1$ đồng thời (hoặc s�
 
 Như vậy là chúng ta đã xong ý tưởng để xây dựng thuật toán Hồi quy tuyến tính đơn biến. Bây giờ chúng ta có thể bắt tay vào viết code.
 
-### Xây dựng code 
+## Xây dựng code 
 
 Ở đây, chúng ta sẽ xây dựng hàm với ví dụ được đưa ra.
 
 $$\text{Profit}_\text{dự đoán} = \hat{y} = h(x) = w_0 + w_1* \text{Marketing} $$
 
-#### Hàm chi phí
+### Hàm chi phí
 
 $$
 \begin{align}
@@ -197,7 +195,7 @@ def cost_function(marketing, profit, w0, w1):
     return total_error / data_size
 ```
 
-#### Tính tham số bằng phương pháp hạ độ dốc
+### Tính tham số bằng phương pháp hạ độ dốc
 
 $$
 \begin{align}
@@ -227,7 +225,7 @@ def gradient_descent(marketing, profit, w0_input, w1_input, learning_rate):
     return w0_new, w1_new
 ```
 
-#### Hàm huấn luyện mô hình
+### Hàm huấn luyện mô hình
 
 ```python
 def train(marketing, profit, w0, w1, learning_rate, loop_count):
@@ -257,7 +255,7 @@ def train(marketing, profit, w0, w1, learning_rate, loop_count):
     return w0_records, w1_records, cost_records
 ```
 
-#### Chạy chương trình với biến đầu vào
+### Chạy chương trình với biến đầu vào
 
 ```python
 # Load thư viện
@@ -278,7 +276,7 @@ w0, w1, cost_record = train(
 )
 ```
 
-### Kết quả
+## Kết quả
 
 Sau đây là kết quả của quá trình train tại một số điểm chọn lọc
 
@@ -306,11 +304,11 @@ Cùng nhìn lại quá trình vòng lặp hạ gradient.
 
 Chúng ta thấy rằng từ vòng lặp thứ 4 trở về sau thì kết quả gần như thay đổi rất ít. Điều này có thể là do: giá trị đạo hàm của `cost function` thấp, `learning_rate` thấp, hoặc do kết quả của chúng ta đang ở một trong những vùng đáy cực tiểu.
 
-### Nhận xét về giá trị của tốc độ học (Learning Rate)
+## Nhận xét về giá trị của tốc độ học (Learning Rate)
 
 ![Learning Rate on the result of Gradient Descent](/assets/img/linear-regression/gradient-descent-learning-rate.png)
 
-#### Khi tốc độ học quá cao
+### Khi tốc độ học quá cao
 
 Khi giá trị của tốc độ học quá cao, $w_0$ và $w_1$ mới cho ra kết quả lệch nhiều so với vị trí cực tiểu mà ta mong muốn.
 
@@ -351,7 +349,7 @@ Sau đây là kết quả nhận được
 
 Ta thấy rằng, giá trị cost function của chúng ta không giảm, mà còn ngày càng tăng dần theo cấp số nhân. Ta nhận xét rằng kết quả đang bị vượt quá giá trị học tối ưu (overshoot) và ngày càng ra xa khỏi giá trị thấp nhất (diverge)
 
-#### Khi tốc độ học quá thấp
+### Khi tốc độ học quá thấp
 
 Khi giá trị của tốc độ học quá thấp, mô hình sẽ tốn rất nhiều thời gian để đi đến giá trị tối ưu, chúng ta có thể thử áp dụng với các learning rate khác nhau để xem sự khác biệt.
 
@@ -367,7 +365,6 @@ Xin hãy tham khảo bài giảng sau của thầy Andrew Ng về Learning Rate 
 
 ## Các nguồn tham khảo và mở rộng
 - Websites (Vietnamese):
-    - Bệnh Viện Đa Khoa Trung Tâm An Giang: [PHÂN TÍCH HỒI QUI TUYẾN TÍNH ĐƠN GIẢN](https://bvag.com.vn/wp-content/uploads/2013/01/k2_attachments_PHAN-TICH-HOI-QUY-TUYEN-TINH-DON-GIAN.pdf)
     - Cafe Dev: [Tự học ML \| Phương trình chuẩn trong hồi quy tuyến tính](https://cafedev.vn/tu-hoc-ml-phuong-trinh-chuan-trong-hoi-quy-tuyen-tinh/)
     - Đắm mình vào học sâu: [Mạng nơ-ron Tuyến tính \| Hồi quy Tuyến tính](https://d2l.aivivn.com/chapter_linear-networks/linear-regression_vn.html#cac-thanh-phan-co-ban-cua-hoi-quy-tuyen-tinh)
     - Machine Learning cơ bản: [Bài 3: Linear Regression](https://machinelearningcoban.com/2016/12/28/linearregression/)
