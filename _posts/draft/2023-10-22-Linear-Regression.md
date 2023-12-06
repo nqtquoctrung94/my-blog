@@ -278,7 +278,7 @@ w0, w1, cost_record = train(
 )
 ```
 
-#### Kết quả
+### Kết quả
 
 Sau đây là kết quả của quá trình train tại một số điểm chọn lọc
 
@@ -306,13 +306,13 @@ Cùng nhìn lại quá trình vòng lặp hạ gradient.
 
 Chúng ta thấy rằng từ vòng lặp thứ 4 trở về sau thì kết quả gần như thay đổi rất ít. Điều này có thể là do: giá trị đạo hàm của `cost function` thấp, `learning_rate` thấp, hoặc do kết quả của chúng ta đang ở một trong những vùng đáy cực tiểu.
 
-#### Nhận xét về giá trị của learning_rate
+### Nhận xét về giá trị của tốc độ học (Learning Rate)
 
 ![Learning Rate on the result of Gradient Descent](/assets/img/linear-regression/gradient-descent-learning-rate.png)
 
-##### Trong trường hợp learning_rate quá cao
+#### Khi tốc độ học quá cao
 
-Khi giá trị của learning_rate quá cao, $w_0$ và $w_1$ mới cho ra kết quả lệch nhiều so với vị trí cực tiểu mà ta mong muốn.
+Khi giá trị của tốc độ học quá cao, $w_0$ và $w_1$ mới cho ra kết quả lệch nhiều so với vị trí cực tiểu mà ta mong muốn.
 
 Chúng ta có thể thử chạy mô hình với các giá trị sau đây 
 
@@ -351,11 +351,11 @@ Sau đây là kết quả nhận được
 
 Ta thấy rằng, giá trị cost function của chúng ta không giảm, mà còn ngày càng tăng dần theo cấp số nhân. Ta nhận xét rằng kết quả đang bị vượt quá giá trị học tối ưu (overshoot) và ngày càng ra xa khỏi giá trị thấp nhất (diverge)
 
-##### Trong trường hợp learning_rate quá thấp
+#### Khi tốc độ học quá thấp
 
-Khi giá trị của learning_rate quá thấp, mô hình sẽ tốn rất nhiều thời gian để đi đến giá trị tối ưu, chúng ta có thể thử áp dụng với các learning rate khác nhau để xem sự khác biệt.
+Khi giá trị của tốc độ học quá thấp, mô hình sẽ tốn rất nhiều thời gian để đi đến giá trị tối ưu, chúng ta có thể thử áp dụng với các learning rate khác nhau để xem sự khác biệt.
 
-Ví dụ minh hoạ cho việc áp dụng learning_rate khác nhau cho mô hình học máy với đầu vào w0 = 0, w1 = 0
+Ví dụ minh hoạ cho việc áp dụng tốc độ học khác nhau cho mô hình học máy với đầu vào w0 = 0, w1 = 0
 
 ![Linear Regression result light](/assets/img/linear-regression/sample-different-learning-rate-light.png){: .light }
 ![Linear Regression result dark](/assets/img/linear-regression/sample-different-learning-rate-dark.png){: .dark }
