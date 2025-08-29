@@ -600,4 +600,4 @@ def fibonacci_fast_doubling(n):
     - Wikipedia: [Generalizations of Fibonacci numbers](https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers#Extension_to_negative_integers)
 
 Hình ảnh được tạo bằng công cụ [Figma](https://www.figma.com/) <br>
-Ảnh động được tạo bằng công cụ [ezgif.com](https://ezgif.com/)
+Ảnh động được tạo bằng công cụ [ezgif.com](https://ezgif.com/) 
