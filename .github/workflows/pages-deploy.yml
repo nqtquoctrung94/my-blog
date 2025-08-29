@@ -18,19 +18,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: ruby/setup-ruby@v1
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          ruby-version: 3.2
-          bundler-cache: true
+          fetch-depth: 0
+          submodules: true
 
-      - run: bundle exec jekyll build -d _site
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v3   # 👈 missing in your file
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.0
+          bundler-cache: true
+          bundler: '2.5.13'
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Build site
+        run: bundle exec jekyll build -d _site
         env:
           JEKYLL_ENV: production
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3   # 👈 use v3
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
@@ -43,4 +57,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4   # 👈 upgrade from v2
