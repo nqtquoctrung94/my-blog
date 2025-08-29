@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source "https://rubygems.org"
-
+gem "sass-embedded", "~> 1.64.0"
 gem "jekyll-theme-chirpy", "~> 6.2", ">= 6.2.2"
 
 group :test do
