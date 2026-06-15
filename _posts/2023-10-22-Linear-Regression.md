@@ -28,8 +28,8 @@ Giả sử chúng ta có một bảng thống kê các lần chi tiêu cho bộ 
 
 Biểu diễn bằng biểu đồ phân tán (scatter plot chart)
 
-![Marketing vs Profit chart light](/assets/img/231022-linear-regression/sample-scatter-light.png){: .light }
-![Marketing vs Profit chart dark](/assets/img/231022-linear-regression/sample-scatter-dark.png){: .dark }
+![Marketing vs Profit chart light](/assets/img/linear-regression/sample-scatter-light.png){: .light }
+![Marketing vs Profit chart dark](/assets/img/linear-regression/sample-scatter-dark.png){: .dark }
 
 Mục tiêu của chúng ta là cần tìm một phương trình đường thẳng, mà ở đó ta có thể biểu diễn được mối quan hệ giữa chi phí cho `Marketing` và lợi nhuận `Profit` thu về. Phương trình cần tìm của chúng ta có dạng như sau:
 
@@ -37,8 +37,8 @@ $$h(x) = \text{Profit} = w_0 + w_1 \times \text{Marketing}$$
 
 Chúng ta có flow xử lý bài toán như sau:
 
-![Linear Regression process light](/assets/img/231022-linear-regression/ML-process-light.png){: .light }
-![Linear Regression process dark](/assets/img/231022-linear-regression/ML-process-dark.png){: .dark }
+![Linear Regression process light](/assets/img/linear-regression/ML-process-light.png){: .light }
+![Linear Regression process dark](/assets/img/linear-regression/ML-process-dark.png){: .dark }
 
 ## Sai số giữa giá trị dự đoán và thực tế
 
@@ -59,8 +59,8 @@ Chúng ta có giá trị dự đoán như sau
 |        36 |     70 |                    30.8 |
 
 
-![Sample prediction line light](/assets/img/231022-linear-regression/sample-random-yhat-light.png){: .light }
-![Sample prediction line dark](/assets/img/231022-linear-regression/sample-random-yhat-dark.png){: .dark }
+![Sample prediction line light](/assets/img/linear-regression/sample-random-yhat-light.png){: .light }
+![Sample prediction line dark](/assets/img/linear-regression/sample-random-yhat-dark.png){: .dark }
 
 
 Chúng ta có thể tính được sai số (độ chênh lệch) giữa giá trị dự đoán $h(x)$ và giá trị thực tế `Profit`. Ta thiết lập phương trình tính sai số tại giá trị ngẫu nhiên $x_i$ như sau:
@@ -72,8 +72,8 @@ $$
 \end{align}
 $$
 
-![Distance between real value vs predict light](/assets/img/231022-linear-regression/sample-before-loss-function-light.png){: .light }
-![Distance between real value vs predict dark](/assets/img/231022-linear-regression/sample-before-loss-function-dark.png){: .dark }
+![Distance between real value vs predict light](/assets/img/linear-regression/sample-before-loss-function-light.png){: .light }
+![Distance between real value vs predict dark](/assets/img/linear-regression/sample-before-loss-function-dark.png){: .dark }
 
 > Lưu ý, đối với hàm dự đoán cho phương trình hồi quy một biến, các cách viết sau đều như nhau: <br>  $\hat{y} = h_\theta(x) = h(x) = \theta_0 + \theta_1x = w_0 + w_1x $ 
 {: .prompt-info }
@@ -299,14 +299,14 @@ $$h(x) = \text{Profit} = 0.0092 + 0.4686 \times \text{Marketing}$$
 
 Cùng nhìn lại quá trình vòng lặp hạ gradient. 
 
-![Linear Regression result light](/assets/img/231022-linear-regression/linear-regression-result-light.gif){: .light }
-![Linear Regression result dark](/assets/img/231022-linear-regression/linear-regression-result-dark.gif){: .dark }
+![Linear Regression result light](/assets/img/linear-regression/linear-regression-result-light.gif){: .light }
+![Linear Regression result dark](/assets/img/linear-regression/linear-regression-result-dark.gif){: .dark }
 
 Chúng ta thấy rằng từ vòng lặp thứ 4 trở về sau thì kết quả gần như thay đổi rất ít. Điều này có thể là do: giá trị đạo hàm của `cost function` thấp, `learning_rate` thấp, hoặc do kết quả của chúng ta đang ở một trong những vùng đáy cực tiểu.
 
 ## Nhận xét về giá trị của tốc độ học (Learning Rate)
 
-![Learning Rate on the result of Gradient Descent](/assets/img/231022-linear-regression/gradient-descent-learning-rate.png)
+![Learning Rate on the result of Gradient Descent](/assets/img/linear-regression/gradient-descent-learning-rate.png)
 
 ### Khi tốc độ học quá cao
 
@@ -355,8 +355,8 @@ Khi giá trị của tốc độ học quá thấp, mô hình sẽ tốn rất n
 
 Ví dụ minh hoạ cho việc áp dụng tốc độ học khác nhau cho mô hình học máy với đầu vào w0 = 0, w1 = 0
 
-![Linear Regression result light](/assets/img/231022-linear-regression/sample-different-learning-rate-light.png){: .light }
-![Linear Regression result dark](/assets/img/231022-linear-regression/sample-different-learning-rate-dark.png){: .dark }
+![Linear Regression result light](/assets/img/linear-regression/sample-different-learning-rate-light.png){: .light }
+![Linear Regression result dark](/assets/img/linear-regression/sample-different-learning-rate-dark.png){: .dark }
 
 Xin hãy tham khảo bài giảng sau của thầy Andrew Ng về Learning Rate (đoạn 5:40 đến 7:50)
 

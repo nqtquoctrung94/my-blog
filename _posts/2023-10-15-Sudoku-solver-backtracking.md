@@ -25,8 +25,8 @@ Vì ô chữ số Sudoku cũng khá là quen thuộc rồi nên mình cũng khô
 
 Trước khi giải thì cần xem xét làm sao để nhập trước. Giả sử chúng ta có [câu đố Sudoku trên trang WebSudoku](https://www.websudoku.com/?level=4&set_id=5364661123) như sau:
 
-![Sudoku Example light](/assets/img/231015-sudoku-solver/sudoku-example-light.png){: .light }
-![Sudoku Example dark](/assets/img/231015-sudoku-solver/sudoku-example-dark.png){: .dark }
+![Sudoku Example light](/assets/img/sudoku-solver/sudoku-example-light.png){: .light }
+![Sudoku Example dark](/assets/img/sudoku-solver/sudoku-example-dark.png){: .dark }
 
 Thường thì các ô Sudoku sẽ được input ở dạng array 9x9:
 
@@ -165,7 +165,7 @@ Hàm này sẽ:
 
 Trên trang Wikipedia về [Sudoku solving algorithms](https://en.wikipedia.org/wiki/Sudoku_solving_algorithms) có ảnh gif thể hiện các bước thử số của thuật toán quay lui này.
 
-![Sudoku Example light](/assets/img/231015-sudoku-solver/sudoku-solved-by-bactracking.gif)
+![Sudoku Example light](/assets/img/sudoku-solver/sudoku-solved-by-bactracking.gif)
 
 Sau đây là code dựa theo video [Python Sudoku Solver](https://www.youtube.com/watch?v=G_UYXzGuqvM) của Computerphile:
 
