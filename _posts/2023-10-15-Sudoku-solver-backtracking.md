@@ -233,13 +233,13 @@ def sudoku_solver2(grid, row=0, col=0):
 
 Cá nhân mình thấy cách 2 dễ hiểu hơn, và về thời gian xử lý cũng nhanh hơn một chút so với cách 1
 
-```console
+{% highlight python %}
 >>> %timeit sudoku_solver(sudoku_input)
 2.58 ms ± 636 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 
 >>> %timeit sudoku_solver2(sudoku_input)
 3.27 ms ± 1.08 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
-```
+{% endhighlight %}
 
 Nhưng đổi lại thì số lần gọi hàm của cách 2 sẽ nhiều hơn cách 1, bởi vì chúng ta có đoạn check `row` và `col`, rồi lại tiếp tục call hàm để nếu xuống dòng. Ở mục tiếp theo mình sẽ bàn về cách thêm bộ đếm để kiểm tra số lần hàm được gọi.
 
@@ -290,7 +290,7 @@ print(f"Total calls sudoku_solver: {function_calls} times.")
 
 Output
 
-```console
+{% highlight python %}
 8 4 7 | 9 6 2 | 1 3 5 
 1 2 5 | 8 4 3 | 9 6 7 
 9 3 6 | 7 1 5 | 8 2 4 
@@ -304,7 +304,7 @@ Output
 3 7 1 | 6 5 4 | 2 9 8 
 Solved after calling sudoku_solver: 17368 times.
 Total calls sudoku_solver: 18223 times.
-```
+{% endhighlight %}
 
 > [2] Chúng ta thử giá trị từ 1 đến 9, vậy trường hợp xấu nhất đó là các giá trị trong 1 hàng có thứ tự `9,8,7,6,5,4,3,2,1`
 {: .prompt-info }
@@ -345,7 +345,7 @@ sudoku_solver_reversed(sudoku_grid2)
 
 Output
 
-```console
+{% highlight python %}
 9 8 7 | 6 5 4 | 3 2 1 
 2 4 6 | 1 7 3 | 9 8 5 
 3 5 1 | 9 2 8 | 7 4 6 
@@ -357,7 +357,7 @@ Output
 5 1 9 | 2 8 6 | 4 7 3 
 4 7 2 | 3 1 9 | 5 6 8 
 8 6 3 | 7 4 5 | 2 1 9 
-```
+{% endhighlight %}
 
 ## Thêm cơ chế dừng cho hàm backtracking
 
