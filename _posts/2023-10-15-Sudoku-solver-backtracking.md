@@ -80,7 +80,7 @@ display_sudoku(sudoku_grid, blank_notation=".")
 {% endhighlight %}
 
 Output
-```
+{% highlight python %}
 . . . | . . 2 | . 3 . 
 . . 5 | 8 . . | 9 . . 
 9 . . | . . 5 | . . . 
@@ -92,7 +92,7 @@ Output
 . . . | 3 . . | . . 6 
 . . 2 | . . 7 | 4 . . 
 . 7 . | 6 . . | . . . 
-```
+{% endhighlight %}
 
 Ở đây mình có để giá trị `blank_notation` để tiện cho việc quan sát. Ta có thể thử tuỳ chỉnh thành các cách ghi khác, tuy nhiên chỉ sử dụng 1 ký tự thôi.
 
@@ -102,7 +102,7 @@ display_sudoku(sudoku_grid, blank_notation=0)
 {% endhighlight %}
 
 Output
-```
+{% highlight python %}
 0 0 0 | 0 0 2 | 0 3 0 
 0 0 5 | 8 0 0 | 9 0 0 
 9 0 0 | 0 0 5 | 0 0 0 
@@ -114,7 +114,7 @@ Output
 0 0 0 | 3 0 0 | 0 0 6 
 0 0 2 | 0 0 7 | 4 0 0 
 0 7 0 | 6 0 0 | 0 0 0 
-```
+{% endhighlight %}
 
 ## Xét điều kiện để điền giá trị
 
