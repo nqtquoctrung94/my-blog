@@ -329,7 +329,7 @@ w0_records, w1_records, cost_record = train(
 Sau đây là kết quả nhận được
 
 
-{% endhighlight %}
+```
 | loop |        w_0       |        w_1         |        cost       |
 |------|------------------|--------------------|-------------------|
 |    0 |           50.000 |              0.200 |         1 138.442 |
@@ -345,7 +345,7 @@ Sau đây là kết quả nhận được
 |   10 | - 20 827 396.880 | -5 870 587 010.099 |      2.25 * 10^24 |
 |   20 |   - 1.34 * 10^18 |     - 3.78 * 10^20 |      9.30 * 10^45 |
 |   30 |   - 8.61 * 10^28 |     - 2.43 * 10^31 |      3.84 * 10^67 |
-{% endhighlight %}
+```
 
 Ta thấy rằng, giá trị cost function của chúng ta không giảm, mà còn ngày càng tăng dần theo cấp số nhân. Ta nhận xét rằng kết quả đang bị vượt quá giá trị học tối ưu (overshoot) và ngày càng ra xa khỏi giá trị thấp nhất (diverge)
 
