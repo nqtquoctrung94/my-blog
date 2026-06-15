@@ -74,12 +74,12 @@ $$ F_n = \frac{\varphi^{n} - (-\varphi)^{-n} }{\sqrt{5}} = \frac{\varphi^n - (-\
 
 Dưới đây là thuật toán Python sử dụng công thức Binet
 
-```python
+{% highlight python %}
 def fibonacci_binet_formula(n: int) -> int:
     phi = (1 + 5**(1/2))/2  # phi là ký hiệu của tỉ lệ vàng
     fibo_n = ( phi**n - (-phi)**(-n) )/(2*phi - 1)
     return int(fibo_n)
-```
+{% endhighlight %}
 
 #### Rút gọn
 
@@ -91,7 +91,7 @@ Với ngoặc vuông [ ] là phép làm tròn đến giá trị nguyên gần nh
 
 Đoạn mã python cho phương trình vắn tắt
 
-```python
+{% highlight python %}
 def fibonacci_binet_formula_short(n: int) -> int:
     sqrt5 = 5**(1/2)
     fibo_n = ((1 + sqrt5)/2)**n / sqrt5
@@ -102,7 +102,7 @@ def fibonacci_binet_formula_short(n: int) -> int:
     phi = (1 + 5**(1/2))/2  # phi là ký hiệu của tỉ lệ vàng
     fibo_n = (phi**n)/(2*phi - 1)
     return int(round(fibo_n))
-```
+{% endhighlight %}
 
 > Tuy nhiên, công thức Binet cần tính toán với số thập phân, và Python có một số [hạn chế trong việc lưu trữ giá trị thập phân](https://docs.python.org/3/tutorial/floatingpoint.html) dẫn đến khả năng sai số khi tính các số Fibonacci lớn. Vì vậy trong thực tế sẽ ít được sử dụng.
 {: .prompt-danger }
@@ -129,12 +129,12 @@ Thay $F_1 = 1$ và $F_0 = 0$, như vậy từ đấy ta tính ngược lên các
 #### Thuật toán
 
 Code python khi triển khai rất gọn
-```python
+{% highlight python %}
 def fibonacci_recursive(n: int) -> int:
     if n <= 1:
         return n # fib(0) = 0 và fib(1) = 1
     return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
-```
+{% endhighlight %}
 
 > Tuy nhiên, cách làm này tốn rất nhiều tài nguyên của máy và bị lặp lại phép tính nhiều lần.
 {: .prompt-danger }
@@ -153,7 +153,7 @@ def fibonacci_recursive(n: int) -> int:
 
 Sau đây là code đệ quy tham khảo từ trang [realpython.com](https://realpython.com/fibonacci-sequence-python/#optimizing-the-recursive-algorithm-for-the-fibonacci-sequence)
 
-```python
+{% highlight python %}
 cache = {0: 0, 1: 1}    # Tạo cache để lưu trữ, mặc định có F0=0, F1=1
 
 def fibonacci_recursive(n: int) -> int:
@@ -161,7 +161,7 @@ def fibonacci_recursive(n: int) -> int:
         return cache[n]
     cache[n] = fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
     return cache[n]
-```
+{% endhighlight %}
 
 > Việc sử dụng hàm đệ quy để tính toán sẽ tạo ra rất nhiều vòng lặp, dẫn đến tình trạng tràn bộ nhớ `stack overflow`, và đối với hàm này thì máy của mình không thể chạy được với n > 2933
 {: .prompt-warning }
@@ -440,7 +440,7 @@ Phép nhân ma trận 2x2 được biểu diễn như sau
 ![Matrix Multiply dark](/my-blog/assets/img/20231006-fibonacci-sequence/matrix-multiplier-dark.png){: .dark }
 
 
-```python
+{% highlight python %}
 def matrix_multiply(A, B):
     # Ma trận nhập vào
     [[a1, a2], [a3, a4]] = A
@@ -470,7 +470,7 @@ def fibonacci_matrix(n):
                     [1, 0]]
     result_matrix = matrix_power(input_matrix, n)
     return result_matrix[0][1] # Hoặc result_matrix[1][0]
-```
+{% endhighlight %}
 
 ### Sử dụng phương pháp fast doubling (tạm dịch tính nhanh bình phương)
 
@@ -555,7 +555,7 @@ $$
 
 #### Thuật toán
 
-```python
+{% highlight python %}
 def fd_method(n):
     if n == 0:
         return (0, 1)
@@ -572,7 +572,7 @@ def fibonacci_fast_doubling(n):
     if n < 0:
         raise ValueError("Cách này không áp dụng cho n < 0")
     return fd_method(n)[0]
-```
+{% endhighlight %}
 
 > Mặc dù cũng sử dụng đệ quy để giải quyết bài toán, nhưng ở đây chúng ta xử lý theo cấp số nhân của 2. Vì thế thuật toán ít tình trạng bị stack overflow, không những thế còn chạy rất nhanh cho các số lớn.
 {: .prompt-info }
