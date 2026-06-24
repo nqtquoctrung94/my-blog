@@ -17,11 +17,15 @@ Bài viết này để lưu lại các kiến thức về Đại số, Thuật t
 <!-- -------------------------------------------------------- -->
 Phép cộng ($+$)
 
-$$\begin{align}
+$$
+\begin{equation}
+\begin{align}
     \text{tổng} &= \text{số hạng} + \text{số hạng}  \\
                 &= \text{hạng tử} + \text{hạng tử}  \\
                 &= \text{số cộng} + \text{số cộng}
-\end{align}$$
+\end{align}
+\end{equation}
+$$
 
 <!-- -------------------------------------------------------- -->
 Phép trừ ($-$)
@@ -31,20 +35,22 @@ $$ \text{hiệu} = \text{số bị trừ} - \text{số trừ}  $$
 <!-- -------------------------------------------------------- -->
 Phép nhân ($\times$)
 
-$$\begin{align}
+$$
+\begin{equation}
+\begin{align}
     \text{tích} &= \text{thừa số} + \text{thừa số}  \\
                 &= \text{nhân tử} + \text{nhân tử}
-\end{align}$$
+\end{align}
+\begin{equation}
+$$
 
 <!-- -------------------------------------------------------- -->
 Phép chia ($\div$)
 
 $$
-    \begin{matrix} 
-        \text{phân số} \\ 
-        \text{thương} \\ 
-        \text{tỷ số}  
-    \end{matrix}
+    \text{phân số}
+    = \text{thương}
+    = \text{tỷ số}
     = \frac{\text{số bị chia}}{\text{số chia}}
     = \frac{\text{tử số}}{\text{mẫu số}}
 $$
@@ -75,21 +81,29 @@ $$ {\text{cơ số}}^{\text{số mũ}} = a^n  = \underbrace{a \times a \times \d
 
 Với $a > 0$, $b > 0$ và với mọi giá trị $x$ và $y$, ta có:
 
-$$ \begin{align}
+$$
+\begin{equation}
+\begin{align}
     a^xa^y  &= a^{x+y}  \\
     (ab)^x  &= a^xb^x   \\
     (a^x)^y &= a^{xy}   \\
     \frac{a^x}{a^y} &= a^{x-y}
-\end{align} $$
+\end{align}
+\end{equation}
+$$
 
 Với $a > 0$, $b > 0$ và với mọi giá trị $x$ và $y$, với $p$ và $q$ là số nguyên, $q \neq 0$ ta có:
 
-$$ \begin{align}
+$$
+\begin{equation}
+\begin{align}
     a^{p/q}         &= \sqrt[q]{a^p}            \\
     \frac{a^x}{b^x} &= \Big(\frac{a}{b}\Big)^x  \\
     a^{-x}          &= \frac{1}{a^x}            \\
     a^0             &= 1
-\end{align} $$
+\end{align}
+\end{equation}
+$$
 
 ## Hàm Logarit
 
@@ -99,21 +113,29 @@ $$ log_{\text{cơ số}}{\text{(số đối logarit)}} = log_b{x} = y $$
 
 **Các phép toán với logarit**: Với $a,b,c > 0$, $a \neq 1$ và $r$ là số thực bất kì, ta có:
 
-$$ \begin{align}
+$$
+\begin{equation}
+\begin{align}
     log_a(a^x)      &= x    \\
     a^{log_a(x)}    &= x    \\
     log_a(bc)       &= log_a(b) + log_a(c) \\
     log_a{\Big(\frac{b}{c}\Big)} &= log_a(b) - log_a(c) \\
     log_a(b^r)      &= rlog_a(b)    \\
-\end{align} $$
+\end{align}
+\end{equation}
+$$
 
 **Logarit và số tự nhiên**: Hàm $log_e(x)$ còn được viết là $ln(x)$, hàm logarit của $e$ có một số tính chất sau:
 
-$$ \begin{align}
+$$
+\begin{equation}
+\begin{align}
     ln(e)   &= log_e(e)   = 1    \\
     ln(e^5) &= log_e(e^5) = 5    \\
     ln(1)   &= log_e(1)   = 0
-\end{align} $$
+\end{align}
+\end{equation}
+$$
 
 **Đổi cơ số logarit**: Với $a,b > 0$ và $a \neq 1$, $b \neq 1$:
 
@@ -206,6 +228,7 @@ $$y = f(x_1, x_2)= 5x_1 + 10x_1x_2 + 3(x_2)^2$$
 Đạo hàm của $y$ theo $x_1$ và $x_2$ lần lượt là:
 
 $$ 
+\begin{equation}
 \begin{align}
     \frac{\partial y}{\partial x_1}
     &= \frac{\partial}{\partial x_1}(5x_1 + 10x_1x_2 + 3(x_2)^2) \\[1ex]
@@ -213,9 +236,11 @@ $$
     &= 5 + 10x_2 + 0 \\[1ex]
     &= 10x_2 + 5
 \end{align}
+\end{equation}
 $$
 
 $$ 
+\begin{equation}
 \begin{align}
     \frac{\partial y}{\partial x_2}
     &= \frac{\partial}{\partial x_2}(5x_1 + 10x_1x_2 + 3(x_2)^2) \\[1ex]
@@ -223,4 +248,5 @@ $$
     &= 0 + 10x_1 + 3.2x_2 \\[1ex]
     &= 10x_1 + 6x_2
 \end{align}
+\end{equation}
 $$
