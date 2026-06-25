@@ -184,20 +184,20 @@ $$
 
 {% highlight python %}
 # Yêu cầu:
-def ReLU(x):
+def relu(x):
     ##### Your code here #####
 
 # Output kỳ vọng:
-ReLU(3) -> 3
-ReLU(-2) -> 0
-ReLU(0) -> 0
+relu(3) -> 3
+relu(-2) -> 0
+relu(0) -> 0
 {% endhighlight %}
 
 <details>
   <summary>Đáp án (Click để xem)</summary>
 
 {% highlight python %}
-def ReLU(x):
+def relu(x):
     if x > 0:
         return x
     else:
@@ -229,8 +229,8 @@ $$
 \end{equation*}
 $$
 
-- Với x > 0, thì |x| = x, nên ReLU(x) = (x + x)/2 = x <br>
-- Với x <u><</u> 0, thì |x| = -x, nên ReLU(x) = (x - x)/2 = 0
+- Với $x > 0$, thì $|x| = x$, nên $\text{ReLU}(x) = (x + x)/2 = x$ <br>
+- Với $x \le 0$, thì $|x| = -x$, nên $\text{ReLU}(x) = (x - x)/2 = 0$
 
 </details>
 
@@ -248,13 +248,13 @@ $$
 
 {% highlight python %}
 # Yêu cầu:
-def leaky_ReLU(x, alpha=0.01):
+def leaky_relu(x, alpha=0.01):
     ##### Your code here #####
 
 # Output kỳ vọng:
-leaky_ReLU(3) -> 3
-leaky_ReLU(-2) -> -0.02
-leaky_ReLU(0) -> 0
+leaky_relu(3) -> 3
+leaky_relu(-2) -> -0.02
+leaky_relu(0) -> 0
 {% endhighlight %}
 
 
@@ -262,7 +262,7 @@ leaky_ReLU(0) -> 0
   <summary>Đáp án (Click để xem)</summary>
 
 {% highlight python %}
-def leaky_ReLU(x, alpha=0.01):
+def leaky_relu(x, alpha=0.01):
     if x > 0:
         return x
     else:
@@ -283,29 +283,128 @@ $$
 
 {% highlight python %}
 # Yêu cầu:
-def Sigmoid(x):
+import math
+
+def sigmoid(x):
     ##### Your code here #####
 
 # Output kỳ vọng:
-Sigmoid(0) -> 0.5
-Sigmoid(2) -> 0.8808
-Sigmoid(-2) -> 0.1192
+sigmoid(0) -> 0.5
+sigmoid(2) -> 0.8808
+sigmoid(-2) -> 0.1192
 {% endhighlight %}
 
 
 <details>
   <summary>Đáp án (Click để xem)</summary>
 
-Trước khi đi vào đáp án, chúng ta cần xét về tính chất của $e^{-x}$:
+<br>
+Trước khi đi vào đáp án, chúng ta cần xét về tính ổn định số học (numerical stability) trong lập trình.<br>
 
-
+Xét:<br> 
+$$\text{Sigmoid}(x) = \frac{1}{1 + e^{-x}}$$
+khi $x \to - \infty$, giá trị $e^{-x} \to \infty$, việc này vượt quá khả năng lưu trữ số thực của máy tính, dẫn đến lỗi tràn số dữ liệu (overflow).<br>
+<br>
+Để giải quyết vấn đề này, chúng ta cần chia thành hai trường hợp:<br>
+1. Khi $x \ge 0$: Số mũ $-x$ sẽ luôn $\le 0$. Đại lượng $e^{-x}$ tiến dần về $0$, đảm bảo phép tính $1 / (1 + e^{-x})$ được tính toán ổn định.<br>
+2. Khi $x < 0$: Chúng ta áp dụng chuẩn hóa số mũ (exp-normalize trick), biến đổi công thức thành $\frac{e^x}{e^x + 1}$. Lúc này số mũ $x$ là số âm, đại lượng $e^x$ tiến dần về $0$ và hoàn toàn tránh được hiện tượng tràn số.<br>
+<br>
+Đọc thêm tại: <a href="https://timvieira.github.io/blog/post/2014/02/11/exp-normalize-trick/" target="_blank" rel="noopener">Exp-Normalize Trick - Numerically stable sigmoid function</a>
 
 {% highlight python %}
-def Sigmoid(x):
+import math
+
+def sigmoid(x):
+    if x >= 0:
+        return 1 / (1 + math.exp(-x))
+    else:
+        return math.exp(x) / (1 + math.exp(x))
+{% endhighlight %}
+
+</details>
+
+
+##### 4. Tanh
+
+$$
+\begin{equation*}
+\text{Tanh}(x) =
+\frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
+\end{equation*}
+$$
+
+{% highlight python %}
+# Yêu cầu:
+import math
+
+def tanh(x):
+    ##### Your code here #####
+
+# Output kỳ vọng:
+tanh(0) -> 0.0
+tanh(2) -> 0.964
+tanh(150) -> 1
+{% endhighlight %}
+
+
+<details>
+  <summary>Đáp án (Click để xem)</summary>
+
+{% highlight python %}
+# Yêu cầu:
+import math
+
+def tanh(x):
+    ex = math.exp(x)
+    enx = math.exp(-x)
+    if ex + enx != 0:
+        return (ex - enx) / (ex + enx)
+    else:
+        return 0
+{% endhighlight %}
+
+Nhận xét: Mặc dù chúng ta đã chủ động kiểm tra điều kiện mẫu số khác 0, nhưng về mặt toán học, mẫu số này sẽ không bao giờ triệt tiêu với mọi x thuộc tập số thực. Điều này dễ dàng chứng minh được. (Mẫu số chỉ có thể bằng 0 khi x là số phức, tuy nhiên trường hợp này nằm ngoài phạm vi xử lý của các bài toán Machine Learning thông thường nên không cần xét tới ở đây).
+
+</details>
+
+
+##### 5. ELU (Exponential Linear Unit)
+
+$$
+\begin{equation*}
+\text{ELU}(x) =
+\begin{cases}
+x & \text{nếu } x > 0 \\
+\alpha(e^{x} - 1) & \text{nếu } x \le 0
+\end{cases}
+\end{equation*}
+$$
+
+{% highlight python %}
+# Yêu cầu:
+import math
+
+def elu(x, alpha=1.0):
+    ##### Your code here #####
+
+# Output kỳ vọng:
+elu(3) -> 3
+elu(-1) -> -0.6321
+elu(0) -> 0
+{% endhighlight %}
+
+
+<details>
+  <summary>Đáp án (Click để xem)</summary>
+
+{% highlight python %}
+import math 
+
+def elu(x, alpha=1.0):
     if x > 0:
         return x
     else:
-        return alpha * x
+        return alpha * (math.exp(x) - 1)
 {% endhighlight %}
 
 </details>
