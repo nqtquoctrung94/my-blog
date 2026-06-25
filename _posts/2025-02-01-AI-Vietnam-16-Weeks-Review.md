@@ -86,8 +86,9 @@ calculate_can_chi_calendar(2024) -> Giáp Thìn
 calculate_can_chi_calendar(1997) -> Đinh Sửu
 {% endhighlight %}
 
+<div style="padding: 15px; border-radius: 6px; border: 1px solid #e9ecef; margin: 20px 0;">
 <details>
-  <summary>Đáp án (Click để xem)</summary>
+  <summary style="cursor: pointer; font-weight: bold">Đáp án (Click để xem)</summary>
 
 Theo yêu cầu của đề, chúng ta chỉ có thể sử dụng if-else để thiết lập hàm, cho nên chúng ta sẽ xét từng trường hợp như sau
 
@@ -162,7 +163,7 @@ print(lst_can[can_index] + " " + lst_chi[chi_index])
 {% endhighlight %}
 
 </details>
-
+</div>
 
 #### Bài tập 2: Hàm kích hoạt - Activate function
 
@@ -193,8 +194,9 @@ relu(-2) -> 0
 relu(0) -> 0
 {% endhighlight %}
 
+<div style="padding: 15px; border-radius: 6px; border: 1px solid #e9ecef; margin: 20px 0;">
 <details>
-  <summary>Đáp án (Click để xem)</summary>
+  <summary style="cursor: pointer; font-weight: bold">Đáp án (Click để xem)</summary>
 
 {% highlight python %}
 def relu(x):
@@ -233,6 +235,7 @@ $$
 - Với $x \le 0$, thì $|x| = -x$, nên $\text{ReLU}(x) = (x - x)/2 = 0$
 
 </details>
+</div>
 
 ##### 2. Leaky ReLU
 
@@ -257,9 +260,9 @@ leaky_relu(-2) -> -0.02
 leaky_relu(0) -> 0
 {% endhighlight %}
 
-
+<div style="padding: 15px; border-radius: 6px; border: 1px solid #e9ecef; margin: 20px 0;">
 <details>
-  <summary>Đáp án (Click để xem)</summary>
+  <summary style="cursor: pointer; font-weight: bold">Đáp án (Click để xem)</summary>
 
 {% highlight python %}
 def leaky_relu(x, alpha=0.01):
@@ -270,7 +273,7 @@ def leaky_relu(x, alpha=0.01):
 {% endhighlight %}
 
 </details>
-
+</div>
 
 ##### 3. Sigmoid
 
@@ -294,10 +297,9 @@ sigmoid(2) -> 0.8808
 sigmoid(-2) -> 0.1192
 {% endhighlight %}
 
-
+<div style="padding: 15px; border-radius: 6px; border: 1px solid #e9ecef; margin: 20px 0;">
 <details>
-  <summary>Đáp án (Click để xem)</summary>
-
+  <summary style="cursor: pointer; font-weight: bold">Đáp án (Click để xem)</summary>
 <br>
 Trước khi đi vào đáp án, chúng ta cần xét về tính ổn định số học (numerical stability) trong lập trình.<br>
 
@@ -322,7 +324,7 @@ def sigmoid(x):
 {% endhighlight %}
 
 </details>
-
+</div>
 
 ##### 4. Tanh
 
@@ -346,9 +348,9 @@ tanh(2) -> 0.964
 tanh(150) -> 1
 {% endhighlight %}
 
-
+<div style="padding: 15px; border-radius: 6px; border: 1px solid #e9ecef; margin: 20px 0;">
 <details>
-  <summary>Đáp án (Click để xem)</summary>
+  <summary style="cursor: pointer; font-weight: bold">Đáp án (Click để xem)</summary>
 
 {% highlight python %}
 # Yêu cầu:
@@ -366,7 +368,7 @@ def tanh(x):
 Nhận xét: Mặc dù chúng ta đã chủ động kiểm tra điều kiện mẫu số khác 0, nhưng về mặt toán học, mẫu số này sẽ không bao giờ triệt tiêu với mọi x thuộc tập số thực. Điều này dễ dàng chứng minh được. (Mẫu số chỉ có thể bằng 0 khi x là số phức, tuy nhiên trường hợp này nằm ngoài phạm vi xử lý của các bài toán Machine Learning thông thường nên không cần xét tới ở đây).
 
 </details>
-
+</div>
 
 ##### 5. ELU (Exponential Linear Unit)
 
@@ -393,9 +395,9 @@ elu(-1) -> -0.6321
 elu(0) -> 0
 {% endhighlight %}
 
-
+<div style="padding: 15px; border-radius: 6px; border: 1px solid #e9ecef; margin: 20px 0;">
 <details>
-  <summary>Đáp án (Click để xem)</summary>
+  <summary style="cursor: pointer; font-weight: bold">Đáp án (Click để xem)</summary>
 
 {% highlight python %}
 import math 
@@ -408,7 +410,7 @@ def elu(x, alpha=1.0):
 {% endhighlight %}
 
 </details>
-
+</div>
 
 ## Tuần 02 - Data Structure Basic
 
