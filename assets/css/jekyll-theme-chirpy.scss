@@ -5,6 +5,28 @@
 /* 1. Import core theme styles */
 @import "main";
 
+/* 1b. Custom Fonts for Vietnamese Support */
+:root {
+  --font-family-base: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-heading: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Force headings, search headers, and post titles to strictly use Be Vietnam Pro */
+h1, h2, h3, h4, h5, h6, 
+.card-title, 
+#post-wrapper h1, 
+.post-title,
+#main-wrapper h1 {
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* KEEP SIDEBAR TITLE AS DEFAULT 
+   Reverts the main sidebar title logo stack back to Chirpy's clean defaults */
+#sidebar .site-title,
+#sidebar .site-title a {
+  font-family: inherit !important; 
+}
+
 /* 2. Custom Table Grid Layout Override */
 .post-content table, 
 .content table,
