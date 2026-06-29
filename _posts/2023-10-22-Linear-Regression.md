@@ -65,10 +65,10 @@ Chúng ta có giá trị dự đoán như sau
 Chúng ta có thể tính được sai số (độ chênh lệch) giữa giá trị dự đoán $h(x)$ và giá trị thực tế `Profit`. Ta thiết lập phương trình tính sai số tại giá trị ngẫu nhiên $x_i$ như sau:
 
 $$
-\begin{align}
+\begin{align*}
     \text{sai số tại $x_i$} &= |\text{Profit tại $x_i$} - \text{Dự đoán tại $x_i$}| \\
                             &= |y_i - h(x_i)|
-\end{align}
+\end{align*}
 $$
 
 ![Distance between real value vs predict light](/my-blog/assets/img/20231022-linear-regression/sample-before-loss-function-light.png){: .light }
@@ -83,10 +83,10 @@ $$
 Trước tiên, chúng ta cùng nhắc lại phương trình sai số toàn phương trung bình (Mean Square Error):
 
 $$ 
-\begin{align}
+\begin{align*}
     \text{MSE} &= \frac{1}{n} [(y_1 - \hat{y}_1)^2 + (y_2 - \hat{y}_2)^2 + \dots + (y_n - \hat{y}_n)^2] \\
             &= \frac{1}{n} \sum_{j=1}^n (y_j - \hat{y_j})^2
-\end{align}
+\end{align*}
 $$
 
 Ở đây, chúng ta dùng chính phương trình MSE làm hàm chi phí của bài toán. Với:
@@ -98,10 +98,10 @@ $$ l^{(i)}(w_0, w_1) = (y_i - \hat{y_i})^2 $$
 - `Hàm chi phí (cost function)` là hàm khái quát của hàm mất mát, thể hiện trung bình độ lệch của toàn mẫu trong tập huấn luyện $\rightarrow$ chi phí tính toán:
 
 $$
-\begin{align}
+\begin{align*}
     L(w_0, w_1) &= \frac{1}{n} \Big[ (y_1 - \hat{y}_1)^2 + \dots +  (y_n - \hat{y}_n)^2 \Big] \\[1ex]
                 &= \frac{1}{n} \sum_{j=1}^{n}  (y_j - \hat{y}_j)^2
-\end{align}
+\end{align*}
 $$
 
 Để mô hình dự đoán được chính xác nhất, ta cần phải khiến cho giá trị của hàm mất mát là nhỏ nhất.
@@ -113,10 +113,10 @@ Bây giờ, mục tiêu của chúng ta là tìm cặp giá trị $w_0$ và $w_1
 Với $\hat{y_j} = h(x_j) = w_0 + w_1x$
 
 $$
-\begin{align}
+\begin{align*}
     L(w_0, w_1) &= \frac{1}{n} \sum_{j=1}^{n} (y_j - \hat{y}_j)^2 \\
                 &= \frac{1}{n} \sum_{j=1}^{n} \big[y_j - (w_0 + w_1x_j) \big]^2
-\end{align}
+\end{align*}
 $$
 
 Phương pháp hạ gradient giúp chúng ta xác định được đâu là hướng mà $w_0$ và $w_1$ nên tăng/giảm để hàm mất mát đạt giá trị cực tiểu. Chúng ta sẽ dùng phương pháp đạo hàm để xác định giá trị cực tiểu của hàm số. Và vì phương trình có 2 biến $w_0$ và $w_1$, ta sẽ dùng cụ thể phương pháp [đạo hàm riêng](/my-blog/posts/Functions-commonly-used/#đạo-hàm-riêng-cho-hàm-nhiều-biến).
@@ -124,25 +124,27 @@ Phương pháp hạ gradient giúp chúng ta xác định được đâu là hư
 **Đạo hàm với $w_0$**
 
 $$
-\begin{align}
+\begin{align*}
     \frac{\partial}{\partial w_0} L(w_0, w_1)
     &= \frac{\partial}{\partial w_0} \Bigg[\frac{1}{n} \sum_{j=1}^{n}  [y_j - (w_0 + w_1x_j)]^2 \Bigg] \\[2ex]
     &= \frac{1}{n} \sum_{j=1}^{n} \frac{\partial}{\partial w_0} \bigg[ [y_j - (w_0 + w_1x_j)]^2 \bigg] \\[2ex]
+    &= \frac{1}{n} \sum_{j=1}^{n} 2[y_j - (w_0 + w_1x_j)] \frac{\partial}{\partial w_0} [y_j - (w_0 + w_1x_j)] \\[2ex]
     &= \frac{1}{n} \sum_{j=1}^{n} 2[y_j - (w_0 + w_1x_j)] (-1) \\
     &= \frac{2}{n} \sum_{j=1}^{n} (w_0 + w_1x_j - y_j) \\
-\end{align}
+\end{align*}
 $$
 
 **Đạo hàm với $w_1$**
 
 $$
-\begin{align}
+\begin{align*}
     \frac{\partial}{\partial w_1} L(w_0, w_1)
     &= \frac{\partial}{\partial w_1} \Bigg[\frac{1}{n} \sum_{j=1}^{n}  [y_j - (w_0 + w_1x_j)]^2 \Bigg] \\[2ex]
     &= \frac{1}{n} \sum_{j=1}^{n} \frac{\partial}{\partial w_1} \bigg[ [y_j - (w_0 + w_1x_j)]^2 \bigg] \\[2ex]
+    &= \frac{1}{n} \sum_{j=1}^{n} 2[y_j - (w_0 + w_1x_j)] \frac{\partial}{\partial w_1} [y_j - (w_0 + w_1x_j)] \\[2ex]
     &= \frac{1}{n} \sum_{j=1}^{n} 2 \big[y_j - (w_0 + w_1x_j) \big] (- x_j) \\
     &= \frac{2}{n} \sum_{j=1}^{n} x(w_0 + w_1x_j - y_j) \\
-\end{align}
+\end{align*}
 $$
 
 ## Cập nhật tham số $w_0$ và $w_1$ và xác định đường thẳng hồi quy tuyến tính
@@ -154,10 +156,10 @@ $$
 Update đồng thời trong vòng lặp:
 
 $$
-\begin{align}
+\begin{align*}
     w_0 &:= w_0 - \alpha \frac{2}{n} \sum_{j=1}^{n} (w_0 + w_1x_j - y_j) \\
     w_1 &:= w_1 - \alpha \frac{2}{n} \sum_{j=1}^{n} x(w_0 + w_1x_j - y_j) 
-\end{align}
+\end{align*}
 $$
 
 Lưu ý rằng ở đây cần update $w_0$ và $w_1$ đồng thời (hoặc sử dụng biến tạm) để tránh bị sai lệch giá trị.
@@ -177,10 +179,10 @@ $$\text{Profit}_\text{dự đoán} = \hat{y} = h(x) = w_0 + w_1* \text{Marketing
 ### Hàm chi phí
 
 $$
-\begin{align}
+\begin{align*}
     L(w_0, w_1) &= \frac{1}{n} \sum_{j=1}^{n} (y_j - \hat{y}_j)^2 \\
                 &= \frac{1}{n} \sum_{j=1}^{n} \big[y_j - (w_0 + w_1x_j) \big]^2
-\end{align}
+\end{align*}
 $$
 
 {% highlight python %}
@@ -197,10 +199,10 @@ def cost_function(marketing, profit, w0, w1):
 ### Tính tham số bằng phương pháp hạ độ dốc
 
 $$
-\begin{align}
+\begin{align*}
     w_0 &:= w_0 - \alpha \frac{2}{n} \sum_{j=1}^{n} (w_0 + w_1x_j - y_j) \\
     w_1 &:= w_1 - \alpha \frac{2}{n} \sum_{j=1}^{n} x(w_0 + w_1x_j - y_j) 
-\end{align}
+\end{align*}
 $$
 
 {% highlight python %}
