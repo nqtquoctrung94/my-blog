@@ -16,25 +16,26 @@ Nội dung ngày 3 trong 16 tuần Review trước khi vào học chương trìn
 
 Để theo dõi toàn bộ nội dung ôn tập, vui lòng tham khảo tại bài viết [16 tuần review cho AIO 2025]({% post_url 2025-02-01-AI-Vietnam-16-Weeks-Review %})
 
-## Tuần 01 - Python Cơ bản
-
-> Nội dung chính:<br>- **Lập trình**: Ôn tập về kỹ thuật lập trình với Python, cú pháp cơ bản (khai báo biến, vòng lặp, điều kiện), cách xây dựng hàm<br>- **Toán**: Sử dụng Python để cài đặt các công thức Toán cơ bản trong giải tích cơ bản
+> Nội dung chính của tuần 1:<br>
+- **Lập trình**: Ôn tập về kỹ thuật lập trình với Python, cú pháp cơ bản (khai báo biến, vòng lặp, điều kiện), cách xây dựng hàm
+- **Toán**: Sử dụng Python để cài đặt các công thức Toán cơ bản trong giải tích cơ bản
 {: .prompt-info }
 
-### Ngày 03: Cấu trúc vòng lặp while-loop
+## Ngày 03: Cấu trúc vòng lặp while-loop
 
+### Mô tả
 - Sự ngẫu nhiên là một đặc điểm cơ bản của các hiện tượng trong thực tế. Nó thể hiện qua việc kết quả của một thí nghiệm không thể dự đoán trước được một cách chính xác. **Ví dụ:** Chọn ngẫu nhiên hai số a và b sao cho tổng của $a + b$ bằng 40, câu hỏi đặt ra rằng, chúng ta phải tạo ngẫu nhiên bao nhiêu lần để thỏa mãn điều kiện trên?
 
 - **Cấu trúc vòng lặp While-loop:** Vòng lặp while là một cấu trúc điều khiển trong Python cho phép thực thi một khối mã nhiều lần miễn là điều kiện cho trước vẫn còn đúng. Cấu trúc câu lệnh như sau:
 
-#### Cú pháp
+### Cú pháp
 
 {% highlight python %}
 while condition:
   # Thực hiện các lệnh bên trong vòng lặp
 {% endhighlight %}
 
-#### Bài tập: về sự ngẫu nhiên - Dùng vòng lặp While
+### Bài tập: về sự ngẫu nhiên - Dùng vòng lặp While
 
 - Chọn ngẫu nhiên hai số a và b thuộc từ 1 đến 20 sao cho tổng của $a + b$ bằng 40, câu hỏi đặt ra rằng, chúng ta phải tạo ngẫu nhiên bao nhiêu lần để thỏa mãn điều kiện trên?
 

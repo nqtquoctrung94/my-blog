@@ -16,13 +16,14 @@ Nội dung ngày 4 trong 16 tuần Review trước khi vào học chương trìn
 
 Để theo dõi toàn bộ nội dung ôn tập, vui lòng tham khảo tại bài viết [16 tuần review cho AIO 2025]({% post_url 2025-02-01-AI-Vietnam-16-Weeks-Review %})
 
-## Tuần 01 - Python Cơ bản
-
-> Nội dung chính:<br>- **Lập trình**: Ôn tập về kỹ thuật lập trình với Python, cú pháp cơ bản (khai báo biến, vòng lặp, điều kiện), cách xây dựng hàm<br>- **Toán**: Sử dụng Python để cài đặt các công thức Toán cơ bản trong giải tích cơ bản
+> Nội dung chính của tuần 1:<br>
+- **Lập trình**: Ôn tập về kỹ thuật lập trình với Python, cú pháp cơ bản (khai báo biến, vòng lặp, điều kiện), cách xây dựng hàm
+- **Toán**: Sử dụng Python để cài đặt các công thức Toán cơ bản trong giải tích cơ bản
 {: .prompt-info }
 
-### Ngày 04: While Loop with continue and break keywords
+## Ngày 04: While Loop with continue and break keywords
 
+### Mô tả
 - Trong Python, câu lệnh `while` được sử dụng để tạo một vòng lặp, trong đó các biểu thưucs được kiểm tra và nếu điều kiện đúng, khối mã lệnh bên trong vòng lặp sẽ được thực thi. Cách lệnh `break` và `continue` được sử dụng để kiểm soát luồng của vòng lặp
 
 ![While Loop with continue and break light](/my-blog/assets/img/20250206-AI-Vietnam-16-Weeks-Review-Day04/while-loop-with-continue-break-light.png){: .light }
@@ -31,7 +32,7 @@ Nội dung ngày 4 trong 16 tuần Review trước khi vào học chương trìn
 - Câu lệnh `break` được sử dụng để thoát khỏi vòng lặp ngay lặp tức.
 - Câu lệnh `continue` được sử dụng để bỏ qua phần còn lại của vòng lặp và chuyển đến lần lặp tiếp theo
 
-#### Cú pháp
+### Cú pháp
 
 {% highlight python %}
 while condition_1:
@@ -51,7 +52,7 @@ while condition_1:
 {% endhighlight %}
 
 
-#### Bài tập
+### Bài tập
 
 Cài đặt hàm find_divisible_number(a) tìm số gnuyeen dương nhỏ nhất lớn hơn 100 và chia hết cho số nguyên dương a
 

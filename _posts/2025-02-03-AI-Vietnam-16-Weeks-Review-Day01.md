@@ -16,19 +16,20 @@ Nội dung ngày 1 trong 16 tuần Review trước khi vào học chương trìn
 
 Để theo dõi toàn bộ nội dung ôn tập, vui lòng tham khảo tại bài viết [16 tuần review cho AIO 2025]({% post_url 2025-02-01-AI-Vietnam-16-Weeks-Review %})
 
-## Tuần 01 - Python Cơ bản
-
-> Nội dung chính:<br>- **Lập trình**: Ôn tập về kỹ thuật lập trình với Python, cú pháp cơ bản (khai báo biến, vòng lặp, điều kiện), cách xây dựng hàm<br>- **Toán**: Sử dụng Python để cài đặt các công thức Toán cơ bản trong giải tích cơ bản
+> Nội dung chính của tuần 1:<br>
+- **Lập trình**: Ôn tập về kỹ thuật lập trình với Python, cú pháp cơ bản (khai báo biến, vòng lặp, điều kiện), cách xây dựng hàm
+- **Toán**: Sử dụng Python để cài đặt các công thức Toán cơ bản trong giải tích cơ bản
 {: .prompt-info }
 
-### Ngày 01: Cấu trúc If-Else
+## Ngày 01: Cấu trúc If-Else
 
+### Mô tả
 Cấu trúc if-else là một cấu trúc điền kiện trong lập trình, đước sử dụng để kiểm tra điền kiện logic và thực hiện các đoạn mã khác nhau dựa trên kết quả của điều kiện
 - **if:** kiểm tra điều kiện. Nếu điều kiện đúng thì thực hiện khối lệnh bên trong
 - **else:** khi điều kiện if là sai, thì sẽ thực thi điều kiện trong else
 - **elif (nếu có, sau if và trước else):** Kiểm tra điều kiện bổ sung nếu điều kiện trước đó là sai
 
-#### Cú pháp
+### Cú pháp
 
 ![if else condition flow light](/my-blog/assets/img/20250203-AI-Vietnam-16-Weeks-Review-Day01/if-elif-elif-else-light.png){: .light }
 ![if else condition flow dark](/my-blog/assets/img/20250203-AI-Vietnam-16-Weeks-Review-Day01/if-elif-elif-else-dark.png){: .dark }
@@ -44,7 +45,7 @@ else:
     # Lệnh sẽ chạy khi tất cả các điều kiện trên đều sai
 {% endhighlight %}
 
-#### Ví dụ
+### Ví dụ
 
 {% highlight python %}
 x = 10
@@ -56,7 +57,7 @@ else:
     print("x là số âm")
 {% endhighlight %}
 
-#### Bài tập 1: Tính lịch Can Chi
+### Bài tập 1: Tính lịch Can Chi
 
 Can Chi là một hệ thống tính toán giờ, ngày, tháng, năm âm lịch của người Trung Quốc cổ đại. Can Chi có 10 thiên can và 12 địa chi. Để tính được can chi, chúng ta dựa vào quy tắc sau đây
 
@@ -168,13 +169,13 @@ print(lst_can[can_index] + " " + lst_chi[chi_index])
 </details>
 </div>
 
-#### Bài tập 2: Hàm kích hoạt - Activate function
+### Bài tập 2: Hàm kích hoạt - Activate function
 
 **Activate Function** thường được sử dụng trong các mô hình học máy để áp dụng một hàm kích hoạt lên đầu ra của một tầng (layer). Hàm này sẽ giúp chuyển đổi dữ liệu đầu vào thành một không gian mong muốn hoặc không gian phi tuyến, giúp mô hình có thể học được các mẫu phức tạp. Một số hàm kích hoạt phổ biến bao gồm: *ReLU*, *Sigmoid*, và *Tanh*, mỗi hàm phù hợp với các nhiệm vụ và kiến trúc khác nhau.
 
 Trong bài tập này, chúng ta sẽ chỉ tập áp dụng hàm if-else dựa vào logic của các Activate Function, hơn là đề cập sâu về tính chất của chúng.
 
-##### 1. ReLU (Rectified Linear Unit)
+#### 1. ReLU (Rectified Linear Unit)
 
 $$
 \begin{equation*}
@@ -240,7 +241,7 @@ $$
 </details>
 </div>
 
-##### 2. Leaky ReLU
+#### 2. Leaky ReLU
 
 $$
 \begin{equation*}
@@ -278,7 +279,7 @@ def leaky_relu(x, alpha=0.01):
 </details>
 </div>
 
-##### 3. Sigmoid
+#### 3. Sigmoid
 
 $$
 \begin{equation*}
@@ -329,7 +330,7 @@ def sigmoid(x):
 </details>
 </div>
 
-##### 4. Tanh
+#### 4. Tanh
 
 $$
 \begin{equation*}
@@ -374,7 +375,7 @@ Mẫu số chỉ có thể bằng 0 khi x là số phức, tuy nhiên trường 
 </details>
 </div>
 
-##### 5. ELU (Exponential Linear Unit)
+#### 5. ELU (Exponential Linear Unit)
 
 $$
 \begin{equation*}

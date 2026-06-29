@@ -16,13 +16,14 @@ Nội dung ngày 5 trong 16 tuần Review trước khi vào học chương trìn
 
 Để theo dõi toàn bộ nội dung ôn tập, vui lòng tham khảo tại bài viết [16 tuần review cho AIO 2025]({% post_url 2025-02-01-AI-Vietnam-16-Weeks-Review %})
 
-## Tuần 01 - Python Cơ bản
-
-> Nội dung chính:<br>- **Lập trình**: Ôn tập về kỹ thuật lập trình với Python, cú pháp cơ bản (khai báo biến, vòng lặp, điều kiện), cách xây dựng hàm<br>- **Toán**: Sử dụng Python để cài đặt các công thức Toán cơ bản trong giải tích cơ bản
+> Nội dung chính của tuần 1:<br>
+- **Lập trình**: Ôn tập về kỹ thuật lập trình với Python, cú pháp cơ bản (khai báo biến, vòng lặp, điều kiện), cách xây dựng hàm
+- **Toán**: Sử dụng Python để cài đặt các công thức Toán cơ bản trong giải tích cơ bản
 {: .prompt-info }
 
-### Ngày 05: While-loop exercise
+## Ngày 05: While-loop exercise - Phương pháp Newton
 
+### Mô tả
 [Phương pháp Newton (Newton's Method)](https://en.wikipedia.org/wiki/Newton%27s_method), còn được gọi là phương pháp Newton-Raphson, là một phương pháp số học để tìm gần đúng của các nghiệm của một hàm số thực. Cụ thể, phương pháp này thường được sử dụng để tìm gần đúng của các nghiệm của phương trình $f(x) = 0$
 
 Ngoài ứng dụng trong tìm nghiệm của một hàm số, phương pháp Newton còn có ứng dụng trong máy học (Machine Learning) trong việc tìm nghiệm của đạo hàm của hàm loss. Tuy nhiên đây là phương pháp không phổ biến bằng thuật toán gradient descent.
@@ -41,7 +42,7 @@ $$ x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} $$
   - Nếu $\lvert x_{n+1} - x_n \rvert < \varepsilon$, ta dừng quá trình lặp và trả về $x_{n+1}$ là nghiệm gần đúng của phương trình.
   - Nếu $\lvert x_{n+1} - x_n \rvert \geq \varepsilon$, ta tiếp tục thực hiện cải thiện xấp xỉ.
 
-#### Bài tập
+### Bài tập
 
 Cài đặt hàm find_square_root(a) tìm căn bậc hai cho một số $a$ bất kì với $\epsilon = 0.001$
 

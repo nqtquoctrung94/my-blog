@@ -16,23 +16,24 @@ Nội dung ngày 2 trong 16 tuần Review trước khi vào học chương trìn
 
 Để theo dõi toàn bộ nội dung ôn tập, vui lòng tham khảo tại bài viết [16 tuần review cho AIO 2025]({% post_url 2025-02-01-AI-Vietnam-16-Weeks-Review %})
 
-## Tuần 01 - Python Cơ bản
-
-> Nội dung chính:<br>- **Lập trình**: Ôn tập về kỹ thuật lập trình với Python, cú pháp cơ bản (khai báo biến, vòng lặp, điều kiện), cách xây dựng hàm<br>- **Toán**: Sử dụng Python để cài đặt các công thức Toán cơ bản trong giải tích cơ bản
+> Nội dung chính của tuần 1:<br>
+- **Lập trình**: Ôn tập về kỹ thuật lập trình với Python, cú pháp cơ bản (khai báo biến, vòng lặp, điều kiện), cách xây dựng hàm
+- **Toán**: Sử dụng Python để cài đặt các công thức Toán cơ bản trong giải tích cơ bản
 {: .prompt-info }
 
-### Ngày 02: Cấu trúc vòng lặp for-loop
+## Ngày 02: Cấu trúc vòng lặp for-loop
 
+### Mô tả
 Vòng lặp for-loop trong Python được sử dụng để lặp qua các phần tử trong một chuỗi (sequence) như danh sách, chuỗi ký tự, tuple, từ điển (dictionary) hoặc dải giá trị số (range).
 
-#### Cú pháp
+### Cú pháp
 
 {% highlight python %}
 for variable in sequence:
   # Thực hiện các lệnh bên trong vòng lặp
 {% endhighlight %}
 
-#### Ví dụ
+### Ví dụ
 
 {% highlight python %}
 # Ví dụ 1: Lặp qua một danh sách
@@ -75,7 +76,7 @@ o
 n
 {% endhighlight %}
 
-#### Bài tập 1: Tính lãi suất tiền gửi ngân hàng
+### Bài tập 1: Tính lãi suất tiền gửi ngân hàng
 
 Số $e$ (hay còn gọi là hằng số Euler) là một số vô tỷ xuất hiện trong nhiều lĩnh vực toán học và khoa học, bao gồm cả lĩnh vực tài chính. Trong ngân hàng, số $e$ được sử dụng để tính lãi suất kép, một phương pháp tính lãi suất trong đó tiền lãi được cộng vào số tiền gốc để tính lãi cho các kỳ hạn tiếp theo. Công thức tổng quát của số $e$ như sau:
 
@@ -149,7 +150,7 @@ def compute_interest(money, period):
 </details>
 </div>
 
-#### Bài tập 2: Thuật toán sàng số nguyên tố Eratosthenes
+### Bài tập 2: Thuật toán sàng số nguyên tố Eratosthenes
 
 Thuật toán sàng số nguyên tố Eratosthenes (Sieve of Eratosthenes) là một trong những phương pháp cổ để sàng lọc toàn bộ số nguyên tố trong khoảng $[1, n]$.
 
