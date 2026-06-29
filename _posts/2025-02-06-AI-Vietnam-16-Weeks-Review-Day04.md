@@ -25,8 +25,8 @@ Nội dung ngày 4 trong 16 tuần Review trước khi vào học chương trìn
 
 - Trong Python, câu lệnh `while` được sử dụng để tạo một vòng lặp, trong đó các biểu thưucs được kiểm tra và nếu điều kiện đúng, khối mã lệnh bên trong vòng lặp sẽ được thực thi. Cách lệnh `break` và `continue` được sử dụng để kiểm soát luồng của vòng lặp
 
-![While Loop with continue and break light](/my-blog/assets/img/20250205-AI-Vietnam-16-Weeks-Review-Day03/while-loop-with-continue-break-light.png){: .light }
-![While Loop with continue and break dark](/my-blog/assets/img/20250205-AI-Vietnam-16-Weeks-Review-Day03/while-loop-with-continue-break-dark.png){: .dark }
+![While Loop with continue and break light](/my-blog/assets/img/20250206-AI-Vietnam-16-Weeks-Review-Day04/while-loop-with-continue-break-light.png){: .light }
+![While Loop with continue and break dark](/my-blog/assets/img/20250206-AI-Vietnam-16-Weeks-Review-Day04/while-loop-with-continue-break-dark.png){: .dark }
 
 - Câu lệnh `break` được sử dụng để thoát khỏi vòng lặp ngay lặp tức.
 - Câu lệnh `continue` được sử dụng để bỏ qua phần còn lại của vòng lặp và chuyển đến lần lặp tiếp theo
