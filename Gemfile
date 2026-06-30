@@ -31,3 +31,4 @@ gem "csv"
 gem "base64"
 gem "bigdecimal"
 gem "rake"
+gem 'wdm', '>= 0.1.0'
