@@ -8,67 +8,23 @@ excerpt_separator: <!--excerpt-end-->
 ---
 
 <!--excerpt-start-->
-Sau khi Bộ Giáo dục và Đào tạo công bố kết quả kỳ thi tốt nghiệp THPT 2026, mình đã nghiên cứu xem liệu năm nay cos nguồn nào để thu thập dữ liệu điểm thi để tự thực hiện các phân tích thống kê hay không. Trong bài viết này mình sẽ viết về quá trình tìm hiểu, cách xác định API, xây dựng chương trình thu thập dữ liệu, làm sạch dữ liệu và chuẩn bị cho bước phân tích sau đó.
+Sau khi Bộ Giáo dục và Đào tạo công bố kết quả kỳ thi tốt nghiệp THPT 2026, mình đã nghiên cứu xem liệu năm nay có nguồn nào để thu thập dữ liệu điểm thi để tự thực hiện các phân tích thống kê hay không. Trong bài viết này mình sẽ viết về quá trình tìm hiểu, cách xác định API, xây dựng chương trình thu thập dữ liệu, làm sạch dữ liệu và chuẩn bị cho bước phân tích sau đó.
 <!--excerpt-end-->
 
 ## Các nguồn tra cứu điểm thi
 
 Các trang cho phép tra cứu điểm thi mà mình biết:
 
-- Từ Bộ Giáo Dục và Đào Tạo:
+- Từ Bộ Giáo Dục và Đào Tạo: <https://tracuudiem.thitotnghiepthpt.edu.vn/> hoặc <https://thisinh.thitotnghiepthpt.edu.vn/Account/Login>
 
-|--:|---------------------------------------------------------|
-| 1 | <https://tracuudiem.thitotnghiepthpt.edu.vn/>           |
-| 2 | <https://thisinh.thitotnghiepthpt.edu.vn/Account/Login> |
-
-- Tra cứu theo Sở Giáo dục & Đào tạo từng tỉnh thành:
-
-| No. | Sở                      | Link tra cứu                                                 |
-|-----|-------------------------|--------------------------------------------------------------|
-|   1 | Sở GD&ĐT Hà Nội         | <https://tracuu.hanoi.edu.vn/>                               |
-|   2 | Sở GD&ĐT Cao Bằng       | <https://tradiem.khaothicaobang.edu.vn/>                     |
-|   3 | Sở GD&ĐT Tuyên Quang    | <http://diemthi.tuyenquang.edu.vn/>                          |
-|   4 | Sở GD&ĐT Điện Biên      | <https://tracuudiem.dienbien.edu.vn/>                        |
-|   5 | Sở GD&ĐT Lai Châu       | <http://diemthithpt.laichau.edu.vn/>                         |
-|   6 | Sở GD&ĐT Sơn La         | <https://diemthitotnghiep.sogddt.sonla.gov.vn/>              |
-|   7 | Sở GD&ĐT Lào Cai        | <https://laocai.tsdc.vnedu.vn/tracuu>                        |
-|   8 | Sở GD&ĐT Thái Nguyên    | <https://diemthi.thainguyen.edu.vn/>                         |
-|   9 | Sở GD&ĐT Lạng Sơn       | <https://tracuudiem.langson.edu.vn/>                         |
-|  10 | Sở GD&ĐT Quảng Ninh     | <https://quangninh.edu.vn/>                                  |
-|  11 | Sở GD&ĐT Bắc Ninh       | <https://diemthi.bacninh.edu.vn/>                            |
-|  12 | Sở GD&ĐT Phú Thọ        | <https://tracuudiem.phutho.edu.vn/>                          |
-|  13 | Sở GD&ĐT Hải Phòng      | <https://diemthithpt.haiphong.gov.vn/>                       |
-|  14 | Sở GD&ĐT Hưng Yên       | <http://diemthi.hungyen.edu.vn/>                             |
-|  15 | Sở GD&ĐT Ninh Bình      | <https://tracuudiemnb.ninhbinh.edu.vn/>                      |
-|  16 | Sở GD&ĐT Thanh Hóa      | <http://thitn.thanhhoa.edu.vn/>                              |
-|  17 | Sở GD&ĐT Nghệ An        | <https://giaoducso.nghean.gov.vn/trang-chu/tra-cuu-diem-thi> |
-|  18 | Sở GD&ĐT Hà Tĩnh        | <http://tracuudiemthi.hatinh.edu.vn/>                        |
-|  19 | Sở GD&ĐT Quảng Trị      | <https://diemthi.quangtri.edu.vn/>                           |
-|  20 | Sở GD&ĐT TP Huế         | <https://tracuudiem2.thuathienhue.edu.vn/>                   |
-|  21 | Sở GD&ĐT Đà Nẵng        | <https://tracuudiem.danang.edu.vn/>                          |
-|  22 | Sở GD&ĐT Quảng Ngãi     | <https://diemthi.quangngai.edu.vn/>                          |
-|  23 | Sở GD&ĐT Gia Lai        | <http://diemthi.gialai.edu.vn:8080/>                         |
-|  24 | Sở GD&ĐT Khánh Hoà      | <https://diemthi.khanhhoa.edu.vn/>                           |
-|  25 | Sở GD&ĐT Đắk Lắk        | <https://diemthi.daklak.edu.vn/>                             |
-|  26 | Sở GD&ĐT Lâm Đồng       | <https://diemthi.lamdongtructuyen.vn/>                       |
-|  27 | Sở GD&ĐT Đồng Nai       | <https://tracuudiem.dongnai.edu.vn/>                         |
-|  28 | Sở GD&ĐT TP Hồ Chí Minh | <https://diemthi.hcm.edu.vn/>                                |
-|  29 | Sở GD&ĐT Tây Ninh       | <https://tracuudiem2026.tayninh.edu.vn/>                     |
-|  30 | Sở GD&ĐT Đồng Tháp      | <http://tracuudiem.dongthap.edu.vn/>                         |
-|  31 | Sở GD&ĐT Vĩnh Long      | <https://tracuudiem.vinhlong.edu.vn/>                        |
-|  32 | Sở GD&ĐT An Giang       | <https://tracuu.angiang.edu.vn/>                             |
-|  33 | Sở GD&ĐT Cần Thơ        | <https://diemthithpt.ctu.edu.vn/>                            |
-|  34 | Sở GD&ĐT Cà Mau         | <http://diemthithpt.camau.edu.vn/>                           |
+- Tra cứu theo Sở Giáo dục & Đào tạo từng tỉnh thành (vì số lượng rất nhiều nên mình sẽ dẫn nguồn [tại đây](https://moet.gov.vn/tin-tuc/tin-tong-hop2/huong-dan-tra-cuu-va-danh-sach-cac-trang-tra-cuu-diem-thi-tot-nghiep-thpt-nam-2026.html))
 
 - Tra cứu trên các trang báo
-
-| No. | Báo            | Link tra cứu                                                                    |
-|-----|----------------|---------------------------------------------------------------------------------|
-|   1 | Báo Dân Trí    | <https://dantri.com.vn/giao-duc/tuyen-sinh/tra-cuu-diem.htm>                    |
-|   2 | Báo Tiền Phong | <https://tienphong.vn/tra-cuu-diem-thi.html>                                    |
-|   3 | Báo Tuổi Trẻ   | <https://tuoitre.vn/diem-thi.htm>                                               |
-|   4 | Báo Vietnamnet | <https://vietnamnet.vn/giao-duc/diem-thi/tra-cuu-diem-thi-tot-nghiep-thpt-2026> |
-|   5 | Báo VnExpress  | <https://diemthi.vnexpress.net/>                                                |
+    - Báo Dân Trí   : <https://dantri.com.vn/giao-duc/tuyen-sinh/tra-cuu-diem.htm>                   
+    - Báo Tiền Phong: <https://tienphong.vn/tra-cuu-diem-thi.html>                                   
+    - Báo Tuổi Trẻ  : <https://tuoitre.vn/diem-thi.htm>                                              
+    - Báo Vietnamnet: <https://vietnamnet.vn/giao-duc/diem-thi/tra-cuu-diem-thi-tot-nghiep-thpt-2026>
+    - Báo VnExpress : <https://diemthi.vnexpress.net/>                                               
 
 
 ## Về cấu trúc số báo danh
@@ -99,13 +55,13 @@ Vậy là mình đã tìm được API để lấy nhiều dữ liệu điểm c
 GET /api/diem-thi-thpt.htm
 {% endhighlight %}
 
-Parameters
+Query Parameters
 
 | Name      | Type | Required | Description             |
 |-----------|------|----------|-------------------------|
-| pageindex | int  | No       | Số trang                |
-| size      | int  | No       | Số lượng dòng mỗi trang |
-| year      | int  | No       | Năm học                 |
+| pageindex | int  | Optional | Số trang                |
+| size      | int  | Optional | Số lượng dòng mỗi trang |
+| year      | int  | Optional | Năm học                 |
 
 ### Lựa chọn phương pháp
 
@@ -169,11 +125,11 @@ Kết quả nhận được sẽ trông như vầy
 |  04003172 |  3.5 | 4.5 | 2.85 |    |    | 4.95 |     |      |    |      |      |      |        |       --- |           |
 
 Qua thông tin bên trên và thêm một chút testing, mình cũng nhận ra một số đặc điểm:
-- Có thể request lên đến 10,000 dòng dữ liệu một lúc
-- Có tổng cộng 1,208,863 dòng dữ liệu (điều này đúng với [thông tin mà báo chí đã đưa](https://vnexpress.net/hon-1-2-trieu-thi-sinh-dang-ky-thi-tot-nghiep-dong-ky-luc-5069379.html), năm nay có số lượng thí sinh cao kỷ lục)
-- Như vậy sẽ cần request khoản 121 lần --> Mình sẽ cố định số vòng lặp này trong code luôn
-- Số báo danh có số 0 đằng trước, nên nếu lưu dữ liệu dưới dạng int sẽ bị mất format
-- Đôi khi server sẽ bị quá tải sẽ trả về lỗi `429 Too Many Requests` hoặc `502 Bad Gateway`
+- Có thể request lên đến 10,000 dòng dữ liệu một lúc.
+- Có tổng cộng 1,208,863 dòng dữ liệu (điều này đúng với [thông tin mà báo chí đã đưa](https://vnexpress.net/hon-1-2-trieu-thi-sinh-dang-ky-thi-tot-nghiep-dong-ky-luc-5069379.html), năm nay có số lượng thí sinh cao kỷ lục).
+- Như vậy sẽ cần request khoảng 121 lần --> Mình sẽ cố định số vòng lặp này trong code luôn.
+- Số báo danh có số 0 đằng trước, nên nếu lưu dữ liệu dưới dạng int sẽ bị mất format.
+- Đôi khi server sẽ bị quá tải sẽ trả về lỗi `429 Too Many Requests` hoặc `502 Bad Gateway`.
 
 Với các thông tin sau, mình bắt đầu triển khai thu thập dữ liệu, với định hướng là:
 - Sẽ request dữ liệu với số page chạy từ 1 đến 121
@@ -356,7 +312,7 @@ Là một người lười, mình luôn thường gom các bước clean dữ li
 df_clean = pd.DataFrame({
     'SBD'       : df['SOBAODANH'],
     'TP'        : df['SOBAODANH'].str[:2].map(city_code),
-    'Ten_NN'    : df['MON_NN'].astype(str).map(language_code),   # Ngôn ngữ của môn Ngoại ngữ
+    'Ten_NN'    : df['MON_NN'].astype(str).map(language_code),   # Ngôn ngữ mà thí sinh chọn thi môn Ngoại ngữ
     'Toán'      : df['TOAN'].astype(float),  
     'Văn'       : df['VA'].astype(float),    
     'Ngoại ngữ' : df['NN'].astype(float),    
@@ -386,4 +342,6 @@ Trong bài viết này, mình đã trình bày quá trình tìm hiểu API, thu 
 
 Nếu có thời gian, mình sẽ tiếp tục chia sẻ phần phân tích dữ liệu cũng như một số thống kê thú vị rút ra từ bộ dữ liệu này. 
 
-Hình ảnh được tạo bằng công cụ [Figma](https://www.figma.com/) và screenshot trong quá trình làm.
+Nguồn mình tham khảo từ nhiều nguồn báo và được đính kèm cho từng mục trong bài viết.
+
+Hình ảnh số báo danh được tạo bằng công cụ [Figma](https://www.figma.com/) và các mục khác được screenshot trong quá trình nghiên cứu.
