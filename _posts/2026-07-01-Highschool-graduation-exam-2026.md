@@ -8,7 +8,7 @@ excerpt_separator: <!--excerpt-end-->
 ---
 
 <!--excerpt-start-->
-Sau khi Bộ Giáo dục và Đào tạo công bố kết quả kỳ thi tốt nghiệp THPT 2026, mình đã nghiên cứu xem liệu năm nay cos nguồn nào để thu thập dữ liệu điểm thi để tự thực hiện các phân tích thống kê hay không. Trong bài viết này mình sẽ viết về quá trình tìm hiểu, cách xác định API, xây dựng chương trình thu thập dữ liệu, làm sạch dữ liệu và chuẩn bị cho bước phân tích sau đó.
+Sau khi Bộ Giáo dục và Đào tạo công bố kết quả kỳ thi tốt nghiệp THPT 2026, mình đã nghiên cứu xem liệu năm nay có nguồn nào để thu thập dữ liệu điểm thi để tự thực hiện các phân tích thống kê hay không. Trong bài viết này mình sẽ viết về quá trình tìm hiểu, cách xác định API, xây dựng chương trình thu thập dữ liệu, làm sạch dữ liệu và chuẩn bị cho bước phân tích sau đó.
 <!--excerpt-end-->
 
 ## Các nguồn tra cứu điểm thi
