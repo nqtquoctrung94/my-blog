@@ -9,7 +9,7 @@ hidden: true
 ---
 
 <!--excerpt-start-->
-Nội dung ngày 6 trong 16 tuần Review trước khi vào học chương trình AIO 2025.
+Nội dung ngày 7 trong 16 tuần Review trước khi vào học chương trình AIO 2025.
 <!--excerpt-end-->
 
 ## Giới thiệu

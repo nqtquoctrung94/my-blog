@@ -65,7 +65,7 @@ Query Parameters
 
 ### Lựa chọn phương pháp
 
-Từ đây mình xây dựng một code đơn giản để lấy trang dữ liệu đầu tiên như sau
+Từ đây mình xây dựng một code đơn giản để lấy trang dữ liệu như sau:
 
 {% highlight python%}
 
@@ -75,9 +75,9 @@ import json
 response = requests.get(
     url = "https://s6.tuoitre.vn/api/diem-thi-thpt.htm",
     params = {
-        "pageindex": 1,
-        "size": 5,
-        "year": 2026
+        "pageindex": 1, # Lấy trang đầu tiên
+        "size": 5,      # Mỗi trang có 5 dòng
+        "year": 2026    # Chỉ lấy trong năm 2026
     }
 )
 
@@ -134,13 +134,13 @@ Qua thông tin bên trên và thêm một chút testing, mình cũng nhận ra m
 Với các thông tin sau, mình bắt đầu triển khai thu thập dữ liệu, với định hướng là:
 - Sẽ request dữ liệu với số page chạy từ 1 đến 121
 - Nếu gặp lỗi, retry sau khi nghỉ một vài giây ngẫu nhiên
-- Mỗi lần request sẽ lưu lại 1 file csv, việc này giúp cho máy không phải lưu toàn bộ data cào được trong RAM trong quá trình cào 121 trang dữ liệu và giảm thiểu rủi ro nếu ngắt quãng giữa chừng thì không bị mất hết.
+- Mỗi lần request sẽ lưu lại 1 file csv, việc này giúp cho máy không phải ghi nhớ data cào được trong RAM trong quá trình cào dữ liệu, và giảm thiểu rủi ro nếu ngắt quãng giữa chừng thì không bị mất dữ liệu của các trang đã cào được.
 - Vì đây là API công khai được website sử dụng để phục vụ người dùng, bài viết chỉ nhằm mục đích nghiên cứu kỹ thuật. Khi thu thập dữ liệu, mình sẽ giới hạn thời gian giữa các request để tránh gây tải không cần thiết lên máy chủ.
 - Kết hợp 121 file csv thành 1 data lớn hoàn chỉnh sau khi cào xong.
 
 ### Triển khai thu thập dữ liệu
 
-Sau đây là code mà mình đã sử dụng để thu thập dữ liệu. Ở đây thay vì sử dụng `requests.get()` theo cách truyền thống, mình sử dụng `requests.Session()` để tái sử dụng kết nối HTTP giữa các request, giúp giảm thời gian thiết lập kết nối và cải thiện tốc độ khi tải nhiều trang liên tiếp.
+Sau đây là code mà mình đã sử dụng để thu thập dữ liệu. Ở đây thay vì sử dụng `requests.get()` như ví dụ bên trên, mình sử dụng `requests.Session()` để tái sử dụng kết nối HTTP, giúp giảm thời gian thiết lập kết nối và cải thiện tốc độ khi tải nhiều trang liên tiếp.
 
 {% highlight python%}
 
@@ -156,6 +156,7 @@ for page in range(1, 122):  # Lặp từ trang 1 đến 121
 
     while True:
 
+        # Request dữ liệu từng trang
         r = session.get(
             "https://s6.tuoitre.vn/api/diem-thi-thpt.htm",
             params = {
@@ -166,35 +167,38 @@ for page in range(1, 122):  # Lặp từ trang 1 đến 121
             timeout=60,
         )
 
-        # Nếu gặp lỗi, thử lại với một mẫu thời gian ngẫu nhiên
-        # Càng gặp lỗi sẽ chờ càng lâu
+        # Nếu gặp lỗi, thử lại sau một khoảng thời gian ngẫu nhiên
+        # Càng gặp lỗi sẽ chờ càng lâu, nhưng không quá 2 phút mỗi lần
         if r.status_code in (429, 500, 502, 503, 504):
             retry += 1
-            wait = min(120, 5 * retry) + random.uniform(0, 2)
+            wait = min(120, 5 * retry) + random.uniform(0, 2)       # +random thời gian để tăng tính tự nhiên cho mỗi lần request
             print(f"{r.status_code} on page {page}, retry in {wait:.1f}s")
             time.sleep(wait)
             continue
 
         r.raise_for_status()
 
+        # Lưu mỗi vòng lặp về 1 file .csv
         pd.DataFrame(r.json()["data"]).to_csv(
             f"crawl/page_{page:03}.csv",
             index=False
         )
-
         print(f"Saved page {page}")
+        
+        # Nghỉ 10s mỗi lần request
         time.sleep(10)
         break
             
 {% endhighlight %}
 
-Tổng thời gian cho quá trình này sẽ khoảng 3 phút
+Tổng thời gian cho quá trình này sẽ khoảng 22 phút
 
 {% highlight python%}
 Records: 1,208,863
-Downloaded: ~47 MB
-Runtime: ~123 seconds
-Average request: 1.0153 seconds
+Storage: ~47 MB
+Request time: ~123 seconds
+Sleep time: 1200 seconds
+Average time/ request: 1.0153 sec/request + 10 sec/Sleep
 {% endhighlight %}
 
 Sau khi đã lưu xong, mình kết hợp dữ liệu lại về 1 khối data hoàn chỉnh
@@ -232,40 +236,40 @@ Năm nay có một sự thay đổi lớn về đơn vị hành chính sau sáp 
 
 {% highlight python%}
 city_code = {
-     '01' : 'Thành phố Hà Nội'
-    ,'04' : 'Tỉnh Cao Bằng'
-    ,'08' : 'Tỉnh Tuyên Quang'
-    ,'11' : 'Tỉnh Điện Biên'
-    ,'12' : 'Tỉnh Lai Châu'
-    ,'14' : 'Tỉnh Sơn La'
-    ,'15' : 'Tỉnh Lào Cai'
-    ,'19' : 'Tỉnh Thái Nguyên'
-    ,'20' : 'Tỉnh Lạng Sơn'
-    ,'22' : 'Tỉnh Quảng Ninh'
-    ,'24' : 'Tỉnh Bắc Ninh'
-    ,'25' : 'Tỉnh Phú Thọ'
-    ,'31' : 'Thành phố Hải Phòng'
-    ,'33' : 'Tỉnh Hưng Yên'
-    ,'37' : 'Tỉnh Ninh Bình'
-    ,'38' : 'Tỉnh Thanh Hóa'
-    ,'40' : 'Tỉnh Nghệ An'
-    ,'42' : 'Tỉnh Hà Tĩnh'
-    ,'44' : 'Tỉnh Quảng Trị'
-    ,'46' : 'Thành phố Huế'
-    ,'48' : 'Thành phố Đà Nẵng'
-    ,'51' : 'Tỉnh Quảng Ngãi'
-    ,'52' : 'Tỉnh Gia Lai'
-    ,'56' : 'Tỉnh Khánh Hòa'
-    ,'66' : 'Tỉnh Đắk Lắk'
-    ,'68' : 'Tỉnh Lâm Đồng'
-    ,'75' : 'Tỉnh Đồng Nai'
-    ,'79' : 'Thành phố Hồ Chí Minh'
-    ,'80' : 'Tỉnh Tây Ninh'
-    ,'82' : 'Tỉnh Đồng Tháp'
-    ,'86' : 'Tỉnh Vĩnh Long'
-    ,'91' : 'Tỉnh An Giang'
-    ,'92' : 'Thành phố Cần Thơ'
-    ,'96' : 'Tỉnh Cà Mau'
+     '01' : 'Hà Nội'
+    ,'04' : 'Cao Bằng'
+    ,'08' : 'Tuyên Quang'
+    ,'11' : 'Điện Biên'
+    ,'12' : 'Lai Châu'
+    ,'14' : 'Sơn La'
+    ,'15' : 'Lào Cai'
+    ,'19' : 'Thái Nguyên'
+    ,'20' : 'Lạng Sơn'
+    ,'22' : 'Quảng Ninh'
+    ,'24' : 'Bắc Ninh'
+    ,'25' : 'Phú Thọ'
+    ,'31' : 'Hải Phòng'
+    ,'33' : 'Hưng Yên'
+    ,'37' : 'Ninh Bình'
+    ,'38' : 'Thanh Hóa'
+    ,'40' : 'Nghệ An'
+    ,'42' : 'Hà Tĩnh'
+    ,'44' : 'Quảng Trị'
+    ,'46' : 'Huế'
+    ,'48' : 'Đà Nẵng'
+    ,'51' : 'Quảng Ngãi'
+    ,'52' : 'Gia Lai'
+    ,'56' : 'Khánh Hòa'
+    ,'66' : 'Đắk Lắk'
+    ,'68' : 'Lâm Đồng'
+    ,'75' : 'Đồng Nai'
+    ,'79' : 'Hồ Chí Minh'
+    ,'80' : 'Tây Ninh'
+    ,'82' : 'Đồng Tháp'
+    ,'86' : 'Vĩnh Long'
+    ,'91' : 'An Giang'
+    ,'92' : 'Cần Thơ'
+    ,'96' : 'Cà Mau'
     ,'99' : 'Cục Quân huấn - Nhà trường, Bộ Quốc phòng'
 }
 {% endhighlight %}
@@ -294,13 +298,13 @@ Dựa vào thứ tự ngôn ngữ trên [báo Thư Viện Pháp Luật](https://
 
 {% highlight python%}
 language_code = {
-    "N1": "English",
-    "N2": "Russian",
-    "N3": "French",
-    "N4": "Chinese",
-    "N5": "German",
-    "N6": "Japanese",
-    "N7": "Korean",
+    "N1": "Anh",
+    "N2": "Nga",
+    "N3": "Phap",
+    "N4": "Trung",
+    "N5": "Duc",
+    "N6": "Nhat",
+    "N7": "Han",
 }
 {% endhighlight %}
 
@@ -310,30 +314,30 @@ Là một người lười, mình luôn thường gom các bước clean dữ li
 
 {% highlight python%}
 df_clean = pd.DataFrame({
-    'SBD'       : df['SOBAODANH'],
-    'TP'        : df['SOBAODANH'].str[:2].map(city_code),
-    'Ten_NN'    : df['MON_NN'].astype(str).map(language_code),   # Ngôn ngữ mà thí sinh chọn thi môn Ngoại ngữ
-    'Toán'      : df['TOAN'].astype(float),  
-    'Văn'       : df['VA'].astype(float),    
-    'Ngoại ngữ' : df['NN'].astype(float),    
+    'sbd'            : df['SOBAODANH'],
+    'tinh_thanh'     : df['SOBAODANH'].str[:2].map(city_code),      # Tỉnh/Thành
+    'ten_ngoai_ngu'  : df['MON_NN'].astype(str).map(language_code), # Ngôn ngữ của môn Ngoại ngữ
+    'toan'           : df['TOAN'].astype(float),  
+    'ngu_van'        : df['VA'].astype(float),    
+    'ngoai_ngu'      : df['NN'].astype(float),    
 
     # Các môn Khoa Học Tự Nhiên
-    'Lí'        : df['LI'].astype(float),    
-    'Hóa'       : df['HO'].astype(float),    
-    'Sinh'      : df['SI'].astype(float),    
+    'vat_li'         : df['LI'].astype(float),    
+    'hoa_hoc'        : df['HO'].astype(float),    
+    'sinh_hoc'       : df['SI'].astype(float),    
 
     # Các môn Khoa Học Xã Hội
-    'Sử'        : df['SU'].astype(float),    
-    'Địa'       : df['DI'].astype(float),    
+    'lich_su'        : df['SU'].astype(float),    
+    'dia_li'         : df['DI'].astype(float),    
 
     # Các môn khác
-    'Tin'       : df['TI'].astype(float),    
-    'KTPL'      : df['KTPL'].astype(float),     # Giáo Dục Kinh Tế Pháp Luật
-    'CNCN'      : df['CNCN'].astype(float),     # Công nghệ - Công nghiệp
-    'CNNN'      : df['CNNN'].astype(float),     # Công nghệ - Nông nghiệp
+    'tin_hoc'        : df['TI'].astype(float),    
+    'kt_phap_luat'   : df['KTPL'].astype(float),     # Giáo Dục Kinh Tế Pháp Luật
+    'cn_cong_nghiep' : df['CNCN'].astype(float),     # Công nghệ - Công nghiệp
+    'cn_nong_nghiep' : df['CNNN'].astype(float),     # Công nghệ - Nông nghiệp
 })
 
-df_clean = df_clean.sort_values(by = 'SBD', ascending=True).reset_index(drop=True)
+df_clean = df_clean.sort_values(by = 'sbd', ascending=True).reset_index(drop=True)
 {% endhighlight %}
 
 ## Tổng kết
