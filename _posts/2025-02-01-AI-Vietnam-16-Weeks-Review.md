@@ -46,6 +46,7 @@ Nội dung sẽ được tách theo từng tuần/ngày, và các post thuộc c
 
 [> Ngày 07: List CRUD]({% post_url 2025-02-11-AIO25-16WR-Day07 %})
 
+[> Ngày 08: Ôn tập List và Bài tập ứng dụng]({% post_url 2025-02-12-AIO25-16WR-Day08 %})
 
 ## Tuần 03 - Linear Algebra
 
