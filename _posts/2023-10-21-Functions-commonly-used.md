@@ -234,3 +234,286 @@ $$
     &= 10x_1 + 6x_2
 \end{align*}
 $$
+
+
+## Ma trận - Các loại ma trận
+
+Cho $m$, $n$ là các số nguyên dương. Một ma trận cấp $m \times n$ là một bảng số hình chữ nhật gồm $m.n$ số $a_{ij} \in \mathbb{R}$ ($i = 1, \dots, m; j = 1, \dots, n$) được xếp thành $m$ dòng và $n$ cột. Ta gọi $a_{ij}$ là giá trị nằm ở dòng thứ $i$ và cột thứ $j$. Ma trận thường được ký hiệu bởi các chữ in hoa $A, B, C, \dots$ như sau:
+
+$$
+A =
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{bmatrix}
+= (a_{ij})_{m \times n}
+$$
+
+<!-- -------------------------------------------------------- -->
+Với $m = 1$, ma trận ở thành `ma trận dòng`:
+
+$$
+A = (a_{ij})_{1 \times n} = 
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}
+\end{bmatrix}
+$$
+
+<!-- -------------------------------------------------------- -->
+Với $n = 1$, ma trận ở thành `ma trận cột`:
+
+$$
+A = (a_{ij})_{m \times 1} = 
+\begin{bmatrix}
+a_{11} \\
+a_{21} \\
+\vdots \\
+a_{m1} 
+\end{bmatrix}
+$$
+
+<!-- -------------------------------------------------------- -->
+Với $m = n$, ma trận ở thành `ma trận vuông`:
+
+$$
+A =
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{bmatrix}
+$$
+
+
+<!-- -------------------------------------------------------- -->
+Với $m = n$ và tất cả phần tử nằm ngoài đường chéo chính đều bằng 0, ma trận ở thành `ma trận chéo`:
+
+$$
+A =
+\begin{bmatrix}
+a_{11} &      0 & \cdots &      0 \\
+     0 & a_{22} & \cdots &      0 \\
+\vdots & \vdots & \ddots & \vdots \\
+     0 &      0 & \cdots & a_{nn}
+\end{bmatrix}
+$$
+
+
+<!-- -------------------------------------------------------- -->
+Với $m = n$, tất cả phần tử nằm ngoài đường chéo chính đều bằng 0, và tất cả phần tử nằm trên đường chéo đều bằng 1, ma trận ở thành `ma trận đơn vị`, ký hiệu là $I_n$:
+
+$$
+I_n =
+\begin{bmatrix}
+     1 &      0 & \cdots &      0 \\
+     0 &      1 & \cdots &      0 \\
+\vdots & \vdots & \ddots & \vdots \\
+     0 &      0 & \cdots &      1
+\end{bmatrix}
+$$
+
+
+<!-- -------------------------------------------------------- -->
+Với $m = n$, tất cả phần tử nằm dưới (hoặc nằm trên) đường chéo chính đều bằng 0, ma trận ở thành `ma trận tam giác`:
+
+$$
+A_{\text{tam giác trên}} =
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+     0 & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+     0 &      0 & \cdots & a_{nn}
+\end{bmatrix}
+
+\: \text{hoặc} \:
+
+A_{\text{tam giác dưới}} = 
+\begin{bmatrix}
+a_{11} &      0 & \cdots &      0 \\
+a_{21} & a_{22} & \cdots &      0 \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{bmatrix}
+
+$$
+
+
+## Phép toán trên Ma trận
+
+<!-- -------------------------------------------------------- -->
+**Phép cộng**
+
+$$
+\begin{bmatrix}
+a_{11} & \cdots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \cdots & a_{mn}
+\end{bmatrix}
+
++
+
+\begin{bmatrix}
+b_{11} & \cdots & b_{1n} \\
+\vdots & \ddots & \vdots \\
+b_{m1} & \cdots & b_{mn}
+\end{bmatrix}
+
+=
+
+\begin{bmatrix}
+a_{11} + b_{11} & \cdots & a_{1n} + b_{1n} \\
+         \vdots & \ddots &          \vdots \\
+a_{m1} + b_{m1} & \cdots & a_{mn} + b_{mn}
+\end{bmatrix}
+$$
+
+<!-- -------------------------------------------------------- -->
+**Tích vô hướng**
+
+$$
+\lambda
+
+.
+
+\begin{bmatrix}
+a_{11} & \cdots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \cdots & a_{mn}
+\end{bmatrix}
+
+=
+
+\begin{bmatrix}
+\lambda a_{11} & \cdots & \lambda a_{1n} \\
+        \vdots & \ddots &         \vdots \\
+\lambda a_{m1} & \cdots & \lambda a_{mn}
+\end{bmatrix}
+$$
+
+<!-- -------------------------------------------------------- -->
+**Phép nhân ma trận**
+
+Cho hai ma trận $$ A = (a_{ij})_{m \times n} \; \text{và} \; B = (b_{ij})_{n \times s} $$
+
+Phép nhân chỉ thực hiện được khi số cột của $A$ bằng số dòng của $B$.
+
+$$
+\underbrace{
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{i1} & a_{i2} & \cdots & a_{in}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{bmatrix}
+}_{m\times n}
+
+\; \times \;
+
+\underbrace{
+\begin{bmatrix}
+b_{11} & \cdots & b_{1j} & \cdots & b_{1s}\\
+b_{21} & \cdots & b_{2j} & \cdots & b_{2s}\\
+\vdots & \ddots & \vdots & \ddots & \vdots\\
+b_{n1} & \cdots & b_{nj} & \cdots & b_{ns}
+\end{bmatrix}
+}_{n\times s}
+
+=
+
+\underbrace{
+\begin{bmatrix}
+c_{11} & \cdots & c_{1j} & \cdots & c_{1s}\\
+\vdots & \ddots & \vdots & \ddots & \vdots\\
+c_{i1} & \cdots & c_{ij} & \cdots & c_{is}\\
+\vdots & \ddots & \vdots & \ddots & \vdots\\
+c_{m1} & \cdots & c_{mj} & \cdots & c_{ms}
+\end{bmatrix}
+}_{m\times s}
+
+$$
+
+Với mỗi phần tử $c_{ij}$ là tổng các tích của dòng thứ $i$ của $A$ và cột thứ $j$ của $B$. Ta minh họa phép tính như sau:
+
+$$
+c_{ij}
+=
+\sum^{n}_{k=1} a_{ik}b_{kj}
+=
+a_{i1}b_{1j} + a_{i2}b_{2j} + \: \dots \: + a_{in}b_{nj}
+$$
+
+
+<!-- -------------------------------------------------------- -->
+**Chuyển vị ma trận**
+
+Ma trận chuyển vị của $A$ được ký hiệu là $A^T$.
+
+Với $$A = (a_{ij})_{m \times n}$$ và $$A^T = (a'_{ij})_{n \times m}$$ thì $$a'_{ji} = a_{ij}$$ với mọi $i = 1, \dots, m$ và $j = 1, \dots, n$
+
+Ví dụ:
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+\end{bmatrix}
+
+\; \text{thì} \;
+
+A^T =
+\begin{bmatrix}
+1 & 4 \\
+2 & 5 \\
+3 & 5 \\
+\end{bmatrix}
+
+$$
+
+
+<!-- -------------------------------------------------------- -->
+**Nghịch đảo ma trận**
+
+Cho trước ma trận vuông $A$ có $n$ cột và $n$ dòng, nếu tồn tại ma trận $A^{-1}$ thỏa điều kiện:
+
+$$ AA^{-1} = A^{-1}A = I_n $$
+
+Ta có 2 kết luận: 
+- ma trận $A$ có thể nghịch đảo, và được gọi là ma trận khả nghịch
+- ma trận $A^{1}$ được gọi là ma trận nghịch đảo của ma trận $A$
+
+Để xác định ma trận nghịch đảo, đối với phương pháp tính tay và trong trường học, ta thường áp dụng phương pháp khử Gauss – Jordan:
+
+$$
+\underbrace{
+\left[
+\begin{array}{cccc|cccc}
+a_{11} & a_{12} & \cdots & a_{1n} & 1 & 0 & \cdots & 0\\
+a_{21} & a_{22} & \cdots & a_{2n} & 0 & 1 & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn} & 0 & 0 & \cdots & 1
+\end{array}
+\right]
+}_{A \mid I_n}
+\;
+\xrightarrow{\text{Gauss--Jordan}}
+\;
+\underbrace{
+\left[
+\begin{array}{cccc|cccc}
+1 & 0 & \cdots & 0 & b_{11} & b_{12} & \cdots & b_{1n}\\
+0 & 1 & \cdots & 0 & b_{21} & b_{22} & \cdots & b_{2n}\\
+\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 1 & b_{n1} & b_{n2} & \cdots & b_{nn}
+\end{array}
+\right]
+}_{I_n \mid A^{-1}}
+$$
+
+Tổng quát hơn, ta thường áp dụng ma trận phụ hợp
+
+$$ A^{-1} = \frac{1}{det(A)} A^{*}$$
