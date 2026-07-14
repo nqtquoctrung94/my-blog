@@ -1,8 +1,8 @@
 ---
 title: 16 tuần review cho AIO 2025
 date: 2025 Feb 01
-categories: [Algorithm, Python, AI Vietnam]
-tags: [algorithm]
+categories: [Study Notes, AI Vietnam, Python]
+tags: [aio2025, learning-roadmap, data-structures, linear-algebra, machine-learning]
 math: true
 excerpt_separator: <!--excerpt-end-->
 ---
@@ -46,7 +46,11 @@ Nội dung sẽ được tách theo từng tuần/ngày, và các post thuộc c
 
 [> Ngày 07: List CRUD]({% post_url 2025-02-11-AIO25-16WR-Day07 %})
 
-[> Ngày 08: Ôn tập List và Bài tập ứng dụng]({% post_url 2025-02-12-AIO25-16WR-Day08 %})
+[> Ngày 08: List Application: Bài tập ứng dụng]({% post_url 2025-02-12-AIO25-16WR-Day08 %})
+
+[> Ngày 09: List Application: Mean và Median]({% post_url 2025-02-13-AIO25-16WR-Day09 %})
+
+[> Ngày 10: List Application: Positional Embedding]({% post_url 2025-02-14-AIO25-16WR-Day10 %})
 
 ## Tuần 03 - Linear Algebra
 
@@ -54,6 +58,8 @@ Nội dung sẽ được tách theo từng tuần/ngày, và các post thuộc c
 - **Toán**: Sử dụng Python để giải các bài tập về Vector, ma trận, hép toán cơ bản trên ma trận (cộng, nhân, chuyển vị), làm quen với dữ liệu ảnh xám, thao tác các phép tính cơ bản với data ảnh
 - **Data Visualization**: Thực hành phép toán ma trận với thư viện NumPy và trựuc quan hóa để quan sát kết quả
 {: .prompt-info }
+
+[> Ngày 10: List Application: Convolution]({% post_url 2025-02-17-AIO25-16WR-Day11 %})
 
 
 ## Tuần 04 - Object-Oriented Programming

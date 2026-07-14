@@ -1,8 +1,8 @@
 ---
 title: Về dãy số Fibonacci
 date: 2023 Oct 06
-categories: [Algorithm, Fibonacci Sequence]
-tags: [algorithm, math, fibonacci sequence, binet's formula, matrix, recursion]
+categories: [Algorithm, Mathematics, Python]
+tags: [fibonacci-sequence, recursion, binet-formula, matrix-exponentiation, fast-doubling, complexity-analysis]
 math: true
 excerpt_separator: <!--excerpt-end-->
 ---

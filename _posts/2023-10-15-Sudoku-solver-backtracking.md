@@ -1,8 +1,8 @@
 ---
 title: Giải Sudoku bằng thuật toán quay lui
 date: 2023 Oct 15
-categories: [Algorithm, Sudoku]
-tags: [algorithm, recursion, sudoku, backtracking]
+categories: [Algorithm, Games, Python] 
+tags: [sudoku-solver, backtracking, recursion, brute-force, algorithm-optimization]
 math: true
 excerpt_separator: <!--excerpt-end-->
 ---

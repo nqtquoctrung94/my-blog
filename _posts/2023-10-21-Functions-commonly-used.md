@@ -1,8 +1,8 @@
 ---
 title: Các phép toán thường sử dụng
 date: 2023 Oct 21
-categories: [Algorithm]
-tags: [algorithm]
+categories: [Algorithm, Mathematics, Machine Learning]
+tags: [calculus, linear-algebra, derivatives, matrices, logarithms, arithmetic]
 math: true
 excerpt_separator: <!--excerpt-end-->
 ---

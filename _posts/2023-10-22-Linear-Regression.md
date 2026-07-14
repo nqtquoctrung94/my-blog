@@ -1,8 +1,8 @@
 ---
 title: Về hồi quy tuyến tính đơn biến và Phương pháp Hạ Gradient
 date: 2023 Oct 22
-categories: [Machine Learning, Linear Regression]
-tags: [machine learning, linear regression, gradient descent]
+categories: [Machine Learning, Linear Regression, Statistics]
+tags: [linear-regression, gradient-descent, cost-function, mean-squared-error, optimization, learning-rate]
 math: true
 excerpt_separator: <!--excerpt-end-->
 ---

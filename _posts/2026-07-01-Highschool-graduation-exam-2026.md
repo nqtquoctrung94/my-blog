@@ -1,8 +1,8 @@
 ---
 title: Về điểm thi tốt nghiệp THPT 2026
 date: 2026 Jul 01
-categories: [Algorithm, Python, Web Crawling]
-tags: [algorithm, python, math, web-crawling]
+categories: [Web Crawling, Data Analysis, Python]
+tags: [web-scraping, api-integration, pandas, data-cleaning, automation, public-data]
 math: true
 excerpt_separator: <!--excerpt-end-->
 ---
