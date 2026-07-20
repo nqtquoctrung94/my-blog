@@ -63,7 +63,7 @@ Nội dung sẽ được tách theo từng tuần/ngày, và các post thuộc c
 
 [> Ngày 12: List Application: The Knight's Tour problem & Backtracking Algorithm]({% post_url 2025-02-18-AIO25-16WR-Day12 %})
 
-[> Ngày 13: Basic Linear Algebra with Numpy]({% post_url 2025-02-18-AIO25-16WR-Day12 %})
+[> Ngày 13: Basic Linear Algebra with Numpy]({% post_url 2025-02-19-AIO25-16WR-Day13 %})
 
 ## Tuần 04 - Object-Oriented Programming
 
