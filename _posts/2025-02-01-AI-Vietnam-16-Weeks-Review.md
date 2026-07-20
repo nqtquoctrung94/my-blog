@@ -2,7 +2,7 @@
 title: 16 tuần review cho AIO 2025
 date: 2025 Feb 01
 categories: [Study Notes, AI Vietnam, Python]
-tags: [aio2025, learning-roadmap, data-structures, linear-algebra, machine-learning]
+tags: [aio2025]
 math: true
 excerpt_separator: <!--excerpt-end-->
 ---
@@ -59,8 +59,11 @@ Nội dung sẽ được tách theo từng tuần/ngày, và các post thuộc c
 - **Data Visualization**: Thực hành phép toán ma trận với thư viện NumPy và trựuc quan hóa để quan sát kết quả
 {: .prompt-info }
 
-[> Ngày 10: List Application: Convolution]({% post_url 2025-02-17-AIO25-16WR-Day11 %})
+[> Ngày 11: Convolution, Padding và Pooling]({% post_url 2025-02-17-AIO25-16WR-Day11 %})
 
+[> Ngày 12: List Application: The Knight's Tour problem & Backtracking Algorithm]({% post_url 2025-02-18-AIO25-16WR-Day12 %})
+
+[> Ngày 13: Basic Linear Algebra with Numpy]({% post_url 2025-02-18-AIO25-16WR-Day12 %})
 
 ## Tuần 04 - Object-Oriented Programming
 
