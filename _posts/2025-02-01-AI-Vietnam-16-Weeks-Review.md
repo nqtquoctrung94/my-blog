@@ -65,6 +65,10 @@ Nội dung sẽ được tách theo từng tuần/ngày, và các post thuộc c
 
 [> Ngày 13: Basic Linear Algebra with Numpy]({% post_url 2025-02-19-AIO25-16WR-Day13 %})
 
+[> Ngày 14: TF-IDF with dictionary reference and for loop]({% post_url 2025-02-20-AIO25-16WR-Day14 %})
+
+[> Ngày 15: Basic Python - Basic Data Analysis with Correlation]({% post_url 2025-02-21-AIO25-16WR-Day15 %})
+
 ## Tuần 04 - Object-Oriented Programming
 
 
